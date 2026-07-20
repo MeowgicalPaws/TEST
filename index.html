@@ -13,6 +13,10 @@
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet MarkerCluster CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
     <script>
         tailwind.config = {
@@ -61,6 +65,17 @@
         .leaflet-popup-content-wrapper { border-radius: 1rem; overflow: hidden; padding: 0; }
         .leaflet-popup-content { margin: 0; width: auto !important; }
         .leaflet-popup-close-button { z-index: 20; color: #666 !important; padding: 4px !important; }
+
+        /* Customizing MarkerCluster colors to match brand theme */
+        .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
+            background-color: rgba(20, 184, 166, 0.6); /* Brand 500 w/ opacity */
+        }
+        .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
+            background-color: rgba(13, 148, 136, 0.9); /* Brand 600 */
+            color: white;
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen flex flex-col">
@@ -303,7 +318,9 @@
             adminUsersList: [], 
             currentView: 'home',
             homeView: 'grid', // 'grid' or 'map'
+            currentFilter: 'All', // 'All', 'Dog', 'Cat', 'Bird', 'Small Pet', 'Other'
             homeMap: null,
+            markerClusterGroup: null, // added for clustering
             addPetMap: null,
             addPetMarker: null,
             activeAnimal: null,
@@ -344,7 +361,7 @@
                     heroTitle: "Find Your New Best Friend",
                     heroDesc: "Give a rescue animal a second chance at happiness. Browse our available pets below.",
                     noAnimalsTitle: "No animals available right now.",
-                    noAnimalsDesc: "The list is currently empty! Check back later, or if you are a caregiver, please log in to add animals.",
+                    noAnimalsDesc: "The list is currently empty for this filter! Check back later.",
                     added: "Added",
                     meet: "Meet",
                     noDesc: "No description provided.",
@@ -391,7 +408,7 @@
                     reqSent: "Your adoption request has been sent to the caregiver.",
                     animalAddedSuccess: "The animal has been successfully published to the site.",
                     uploadFailed: "An error occurred. Images might be too large even after compression.",
-                    dog: "Dog", cat: "Cat", bird: "Bird", "small pet": "Small Pet", other: "Other",
+                    allPets: "All Pets", dog: "Dog", cat: "Cat", bird: "Bird", "small pet": "Small Pet", other: "Other",
                     submitting: "Submitting...",
                     saving: "Saving...",
                     for: "For",
@@ -450,7 +467,7 @@
                     heroTitle: "دور على صاحبك الجديد",
                     heroDesc: "إدي فرصة تانية وحياة سعيدة لحيوان أليف. تصفح الحيوانات المتاحة عندنا تحت.",
                     noAnimalsTitle: "مفيش حيوانات متاحة دلوقتي.",
-                    noAnimalsDesc: "القائمة فاضية حاليا! ارجع شوف تاني بعدين، أو لو أنت مقدم رعاية، سجل دخول عشان تضيف حيوانات.",
+                    noAnimalsDesc: "القائمة فاضية للفلتر ده! ارجع شوف تاني بعدين.",
                     added: "تمت إضافته",
                     meet: "قابل",
                     noDesc: "مفيش وصف متاح.",
@@ -497,7 +514,7 @@
                     reqSent: "تم إرسال طلب التبني بتاعك لمقدم الرعاية.",
                     animalAddedSuccess: "تم نشر الحيوان بنجاح على الموقع.",
                     uploadFailed: "حصلت مشكلة. ممكن الصور تكون مساحتها كبيرة حتى بعد الضغط.",
-                    dog: "كلب", cat: "قطة", bird: "عصفور", "small pet": "حيوان صغير", other: "أخرى",
+                    allPets: "كل الحيوانات", dog: "كلب", cat: "قطة", bird: "عصفور", "small pet": "حيوان صغير", other: "أخرى",
                     submitting: "جاري التقديم...",
                     saving: "جاري الحفظ...",
                     for: "لـ",
@@ -809,6 +826,14 @@
                 }
             },
 
+            setFilter: function(filterType) {
+                this.currentFilter = filterType;
+                this.refreshCurrentView();
+                if (this.homeView === 'map') {
+                    setTimeout(() => this.initHomeMap(), 100);
+                }
+            },
+
             initHomeMap: function() {
                 if (this.homeMap) {
                     this.homeMap.remove();
@@ -817,15 +842,27 @@
                 const mapEl = document.getElementById('home-pets-map');
                 if (!mapEl) return;
 
-                // Center logic: Default to an approximate regional center (e.g., Cairo/Middle East area)
+                // Center logic: Default to an approximate regional center
                 this.homeMap = L.map('home-pets-map').setView([30.0444, 31.2357], 5);
                 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; OpenStreetMap contributors'
                 }).addTo(this.homeMap);
 
+                // Use MarkerClusterGroup for clustering icons
+                this.markerClusterGroup = L.markerClusterGroup({
+                    chunkedLoading: true,
+                    spiderfyOnMaxZoom: true,
+                    showCoverageOnHover: false,
+                    maxClusterRadius: 50
+                });
+
+                const filteredAnimals = this.currentFilter === 'All' 
+                    ? this.animals 
+                    : this.animals.filter(a => a.type.toLowerCase() === this.currentFilter.toLowerCase());
+
                 const bounds = [];
-                this.animals.forEach(animal => {
+                filteredAnimals.forEach(animal => {
                     if (animal.lat && animal.lng) {
                         const mainImage = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/100x100/eeeeee/999999';
                         const icon = L.divIcon({
@@ -836,7 +873,7 @@
                             popupAnchor: [0, -28]
                         });
 
-                        const marker = L.marker([animal.lat, animal.lng], { icon }).addTo(this.homeMap);
+                        const marker = L.marker([animal.lat, animal.lng], { icon });
                         bounds.push([animal.lat, animal.lng]);
                         
                         const popupContent = `
@@ -852,8 +889,14 @@
                             </div>
                         `;
                         marker.bindPopup(popupContent);
+                        
+                        // Add marker to cluster group instead of directly to map
+                        this.markerClusterGroup.addLayer(marker);
                     }
                 });
+
+                // Add cluster group to map
+                this.homeMap.addLayer(this.markerClusterGroup);
 
                 if (bounds.length > 0) {
                     this.homeMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 14 });
@@ -883,20 +926,41 @@
                     </div>
                 `;
 
+                // Render Filter UI
+                const filters = ['All', 'Cat', 'Dog', 'Bird', 'Small Pet', 'Other'];
+                let filterHTML = `<div class="flex justify-center flex-wrap gap-2 mb-6">`;
+                filters.forEach(f => {
+                    const isActive = this.currentFilter === f;
+                    const btnClass = isActive 
+                        ? 'bg-brand-500 text-white shadow-md' 
+                        : 'bg-white text-gray-500 hover:text-brand-600 hover:bg-brand-50 border border-gray-200';
+                    const translationKey = f === 'All' ? 'allPets' : f.toLowerCase();
+                    filterHTML += `
+                        <button onclick="app.setFilter('${f}')" class="px-5 py-2 rounded-full font-bold transition-all duration-300 ${btnClass}">
+                            ${this.t(translationKey)}
+                        </button>
+                    `;
+                });
+                filterHTML += `</div>`;
+
                 let gridMapToggle = `
                     <div class="flex justify-center mb-10 gap-3">
-                        <button onclick="app.setHomeView('grid')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'grid' ? 'bg-brand-500 text-white scale-105' : 'bg-white text-gray-500 hover:text-brand-600 hover:bg-gray-50 border border-gray-200'}">
+                        <button onclick="app.setHomeView('grid')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'grid' ? 'bg-gray-800 text-white scale-105' : 'bg-white text-gray-500 hover:text-gray-800 hover:bg-gray-50 border border-gray-200'}">
                             <i class="fa-solid fa-table-cells-large mr-2"></i> ${this.t('gridView')}
                         </button>
-                        <button onclick="app.setHomeView('map')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'map' ? 'bg-brand-500 text-white scale-105' : 'bg-white text-gray-500 hover:text-brand-600 hover:bg-gray-50 border border-gray-200'}">
+                        <button onclick="app.setHomeView('map')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'map' ? 'bg-gray-800 text-white scale-105' : 'bg-white text-gray-500 hover:text-gray-800 hover:bg-gray-50 border border-gray-200'}">
                             <i class="fa-solid fa-map-location-dot mr-2"></i> ${this.t('mapView')}
                         </button>
                     </div>
                 `;
 
-                let html = heroHTML + `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">` + gridMapToggle;
+                let html = heroHTML + `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">` + filterHTML + gridMapToggle;
                 
-                if (this.animals.length === 0) {
+                const filteredAnimals = this.currentFilter === 'All' 
+                    ? this.animals 
+                    : this.animals.filter(a => a.type.toLowerCase() === this.currentFilter.toLowerCase());
+
+                if (filteredAnimals.length === 0) {
                     html += `
                         <div class="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100">
                             <i class="fa-solid fa-cat text-6xl text-gray-300 mb-6"></i>
@@ -907,7 +971,7 @@
                 } else if (this.homeView === 'grid') {
                     html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">`;
                     
-                    this.animals.forEach(animal => {
+                    filteredAnimals.forEach(animal => {
                         const mainImage = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/600x400/eeeeee/999999?text=No+Image';
                         html += `
                             <div class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer flex flex-col h-full border border-gray-100" onclick="app.navigate('detail', '${animal.id}')">
@@ -939,7 +1003,8 @@
                     });
                     html += `</div>`;
                 } else if (this.homeView === 'map') {
-                    html += `<div id="home-pets-map" class="w-full h-[600px] rounded-3xl shadow-lg border border-gray-200 overflow-hidden relative"></div>`;
+                    // Increased map height to 80vh (almost full page) and set minimum height
+                    html += `<div id="home-pets-map" class="w-full h-[80vh] min-h-[600px] rounded-3xl shadow-lg border border-gray-200 overflow-hidden relative"></div>`;
                 }
                 
                 html += `</div>`;
