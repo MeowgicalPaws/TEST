@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ar.min.js"></script>
     
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -51,6 +54,13 @@
         [dir="rtl"] .text-right { text-align: left; }
         [dir="rtl"] .pl-6 { padding-left: 0; padding-right: 1.5rem; }
         [dir="rtl"] .border-l { border-left: none; border-right: 1px solid #e5e7eb; }
+
+        /* Leaflet Map Overrides */
+        .leaflet-container { font-family: inherit; z-index: 10; }
+        .custom-pet-marker { background: none; border: none; }
+        .leaflet-popup-content-wrapper { border-radius: 1rem; overflow: hidden; padding: 0; }
+        .leaflet-popup-content { margin: 0; width: auto !important; }
+        .leaflet-popup-close-button { z-index: 20; color: #666 !important; padding: 4px !important; }
     </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen flex flex-col">
@@ -58,28 +68,25 @@
     <!-- Navigation -->
     <nav class="glass-nav fixed w-full z-50 top-0 border-b border-gray-200 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center gap-2">
-                <!-- Shrink title on mobile, hide text on extra small screens -->
+            <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="app.navigate('home')">
-                    <i class="fa-solid fa-paw text-brand-500 text-2xl sm:text-3xl mr-2"></i>
-                    <span class="font-heading font-bold text-lg sm:text-2xl tracking-tight text-gray-900 hidden sm:block" data-i18n="navAppName">Meowgical Paws</span>
+                    <i class="fa-solid fa-paw text-brand-500 text-3xl mr-2"></i>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-gray-900" data-i18n="navAppName">Meowgical Paws</span>
                 </div>
-                
-                <!-- Use gap-2 on mobile, hide text labels, allow horizontal scroll if needed -->
-                <div class="flex items-center gap-2 sm:gap-4 overflow-x-auto hide-scrollbar py-2">
-                    <button id="btn-lang" onclick="app.toggleLanguage()" class="text-xs sm:text-sm font-bold text-brand-600 hover:text-brand-800 transition-colors flex items-center gap-1 bg-brand-50 px-2 sm:px-3 py-1 rounded-full whitespace-nowrap">
+                <div class="flex items-center gap-4">
+                    <button id="btn-lang" onclick="app.toggleLanguage()" class="text-sm font-bold text-brand-600 hover:text-brand-800 transition-colors flex items-center gap-1 bg-brand-50 px-3 py-1 rounded-full">
                         <i class="fa-solid fa-globe"></i> <span id="lang-text">EN</span>
                     </button>
                     
-                    <div id="nav-user-info" class="text-xs sm:text-sm font-semibold text-gray-700 bg-gray-100 px-2 sm:px-3 py-1 rounded-full border border-gray-200 flex items-center whitespace-nowrap">
-                        <i class="fa-solid fa-user-secret mr-1"></i> <span data-i18n="guest" class="hidden sm:inline">Guest</span>
+                    <div id="nav-user-info" class="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded-full border border-gray-200 flex items-center">
+                        <i class="fa-solid fa-user-secret mr-1"></i> <span data-i18n="guest">Guest</span>
                     </div>
                     
-                    <button id="btn-auth-open" onclick="app.showAuthModal()" class="text-xs sm:text-sm font-medium text-brand-600 hover:text-brand-800 font-bold transition-colors whitespace-nowrap" data-i18n="signInRegister">Sign In</button>
-                    <button id="btn-signout" onclick="app.logout()" class="text-xs sm:text-sm font-medium text-red-500 hover:text-red-700 transition-colors hidden whitespace-nowrap" data-i18n="signOut">Sign Out</button>
+                    <button id="btn-auth-open" onclick="app.showAuthModal()" class="text-sm font-medium text-brand-600 hover:text-brand-800 font-bold transition-colors" data-i18n="signInRegister">Sign In / Register</button>
+                    <button id="btn-signout" onclick="app.logout()" class="text-sm font-medium text-red-500 hover:text-red-700 transition-colors hidden" data-i18n="signOut">Sign Out</button>
 
-                    <button id="btn-dashboard" onclick="app.navigate('dashboard')" class="hidden bg-brand-500 hover:bg-brand-600 text-white px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-semibold shadow-md transition-all transform hover:-translate-y-0.5 whitespace-nowrap">
-                        <i class="fa-solid fa-clipboard-list sm:mr-2"></i><span id="dash-btn-text" class="hidden sm:inline">Dashboard</span>
+                    <button id="btn-dashboard" onclick="app.navigate('dashboard')" class="hidden bg-brand-500 hover:bg-brand-600 text-white px-5 py-2 rounded-full font-semibold shadow-md transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-clipboard-list mr-2"></i><span id="dash-btn-text">Dashboard</span>
                     </button>
                 </div>
             </div>
@@ -295,6 +302,10 @@
             requests: [],
             adminUsersList: [], 
             currentView: 'home',
+            homeView: 'grid', // 'grid' or 'map'
+            homeMap: null,
+            addPetMap: null,
+            addPetMarker: null,
             activeAnimal: null,
             lang: 'ar', 
             translations: {
@@ -398,7 +409,11 @@
                     adminApproveDesc: "Review and approve pending Pet Caregiver accounts.",
                     approveCaregiver: "Approve Account",
                     noPending: "No pending caregiver accounts.",
-                    approvedSuccess: "Caregiver approved successfully."
+                    approvedSuccess: "Caregiver approved successfully.",
+                    gridView: "Grid View",
+                    mapView: "Map View",
+                    pinLocation: "Pin Location on Map *",
+                    pinRequired: "Please pin the pet's location on the map."
                 },
                 ar: {
                     navAppName: "Meowgical Paws",
@@ -500,7 +515,11 @@
                     adminApproveDesc: "مراجعة والموافقة على حسابات مقدمي الرعاية المعلقة.",
                     approveCaregiver: "موافقة الحساب",
                     noPending: "لا يوجد حسابات رعاية معلقة.",
-                    approvedSuccess: "تمت الموافقة على مقدم الرعاية بنجاح."
+                    approvedSuccess: "تمت الموافقة على مقدم الرعاية بنجاح.",
+                    gridView: "عرض شبكي",
+                    mapView: "عرض الخريطة",
+                    pinLocation: "حدد الموقع على الخريطة *",
+                    pinRequired: "يرجى تحديد موقع الحيوان الأليف على الخريطة."
                 }
             },
             
@@ -586,9 +605,7 @@
                     });
                     this.requests.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                     if (this.currentView === 'dashboard') this.renderDashboard();
-                }, (error) => { 
-                    // Suppress permission warnings in console
-                });
+                }, (error) => {});
             },
             
             setupAdminSubscriptions: function() {
@@ -598,9 +615,7 @@
                         this.adminUsersList.push({ id: doc.id, ...doc.data() });
                     });
                     if (this.currentView === 'dashboard' && this.role === 'admin') this.renderDashboard();
-                }, (error) => { 
-                    // Suppress permission warnings in console
-                });
+                }, (error) => {});
             },
 
             loadUserProfile: async function() {
@@ -614,7 +629,6 @@
                         this.role = 'adopter';
                     }
                 } catch (e) { 
-                    // Silently fall back if Firestore rejects the read
                     this.userProfile = { role: 'adopter', name: 'User', approved: true };
                     this.role = 'adopter';
                 }
@@ -638,14 +652,14 @@
                     if (this.role === 'caregiver') {
                         btnDash.classList.remove('hidden');
                         dashText.textContent = this.t('dashboardBtn');
-                        userInfo.innerHTML = `<i class="fa-solid fa-house-chimney-medical mr-1"></i> <span class="hidden sm:inline">${this.userProfile.name || this.t('caregiverTitle')}</span>`;
+                        userInfo.innerHTML = `<i class="fa-solid fa-house-chimney-medical mr-1"></i> ${this.userProfile.name || this.t('caregiverTitle')}`;
                     } else if (this.role === 'admin') {
                         btnDash.classList.remove('hidden');
                         dashText.textContent = this.t('adminDashBtn');
-                        userInfo.innerHTML = `<i class="fa-solid fa-shield-halved mr-1"></i> <span class="hidden sm:inline">Admin</span>`;
+                        userInfo.innerHTML = `<i class="fa-solid fa-shield-halved mr-1"></i> Admin`;
                     } else {
                         btnDash.classList.add('hidden');
-                        userInfo.innerHTML = `<i class="fa-solid fa-user mr-1"></i> <span class="hidden sm:inline">${this.userProfile.name || this.t('adopterTitle')}</span>`;
+                        userInfo.innerHTML = `<i class="fa-solid fa-user mr-1"></i> ${this.userProfile.name || this.t('adopterTitle')}`;
                     }
                 } else {
                     btnAuth.classList.remove('hidden');
@@ -655,7 +669,7 @@
                     userInfo.classList.remove('hidden');
                     userInfo.classList.replace('bg-brand-50', 'bg-gray-100');
                     userInfo.classList.replace('text-brand-700', 'text-gray-700');
-                    userInfo.innerHTML = `<i class="fa-solid fa-user-secret mr-1"></i> <span data-i18n="guest" class="hidden sm:inline">${this.t('guest')}</span>`;
+                    userInfo.innerHTML = `<i class="fa-solid fa-user-secret mr-1"></i> ${this.t('guest')}`;
                 }
             },
 
@@ -787,6 +801,65 @@
                 else if (this.currentView === 'dashboard') this.renderDashboard();
             },
 
+            setHomeView: function(view) {
+                this.homeView = view;
+                this.renderHome();
+                if (view === 'map') {
+                    setTimeout(() => this.initHomeMap(), 100);
+                }
+            },
+
+            initHomeMap: function() {
+                if (this.homeMap) {
+                    this.homeMap.remove();
+                    this.homeMap = null;
+                }
+                const mapEl = document.getElementById('home-pets-map');
+                if (!mapEl) return;
+
+                // Center logic: Default to an approximate regional center (e.g., Cairo/Middle East area)
+                this.homeMap = L.map('home-pets-map').setView([30.0444, 31.2357], 5);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(this.homeMap);
+
+                const bounds = [];
+                this.animals.forEach(animal => {
+                    if (animal.lat && animal.lng) {
+                        const mainImage = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/100x100/eeeeee/999999';
+                        const icon = L.divIcon({
+                            className: 'custom-pet-marker',
+                            html: `<div class="w-14 h-14 rounded-full overflow-hidden border-4 border-brand-500 shadow-xl bg-white flex items-center justify-center transform transition hover:scale-110"><img src="${mainImage}" class="w-full h-full object-cover"></div>`,
+                            iconSize: [56, 56],
+                            iconAnchor: [28, 28],
+                            popupAnchor: [0, -28]
+                        });
+
+                        const marker = L.marker([animal.lat, animal.lng], { icon }).addTo(this.homeMap);
+                        bounds.push([animal.lat, animal.lng]);
+                        
+                        const popupContent = `
+                            <div class="cursor-pointer p-0 text-center min-w-[160px] bg-white flex flex-col" onclick="app.navigate('detail', '${animal.id}')">
+                                <div class="w-full h-28 bg-gray-100 rounded-t-xl overflow-hidden mb-3">
+                                    <img src="${mainImage}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="px-3 pb-3">
+                                    <h3 class="font-heading font-bold text-gray-900 text-lg mb-1 leading-tight">${animal.name}</h3>
+                                    <p class="text-xs font-semibold text-brand-600 mb-2">${animal.breed}</p>
+                                    <button class="text-xs bg-brand-500 hover:bg-brand-600 transition-colors text-white px-4 py-1.5 rounded-full w-full font-bold shadow-sm">${this.t('aboutAnimal')} ${animal.name}</button>
+                                </div>
+                            </div>
+                        `;
+                        marker.bindPopup(popupContent);
+                    }
+                });
+
+                if (bounds.length > 0) {
+                    this.homeMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 14 });
+                }
+            },
+
             renderHome: function() {
                 const container = document.getElementById('app-content');
                 
@@ -806,27 +879,37 @@
                                     </button>
                                 </div>
                             ` : ''}
-
                         </div>
                     </div>
                 `;
 
-                let gridHTML = `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">`;
+                let gridMapToggle = `
+                    <div class="flex justify-center mb-10 gap-3">
+                        <button onclick="app.setHomeView('grid')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'grid' ? 'bg-brand-500 text-white scale-105' : 'bg-white text-gray-500 hover:text-brand-600 hover:bg-gray-50 border border-gray-200'}">
+                            <i class="fa-solid fa-table-cells-large mr-2"></i> ${this.t('gridView')}
+                        </button>
+                        <button onclick="app.setHomeView('map')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'map' ? 'bg-brand-500 text-white scale-105' : 'bg-white text-gray-500 hover:text-brand-600 hover:bg-gray-50 border border-gray-200'}">
+                            <i class="fa-solid fa-map-location-dot mr-2"></i> ${this.t('mapView')}
+                        </button>
+                    </div>
+                `;
+
+                let html = heroHTML + `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">` + gridMapToggle;
                 
                 if (this.animals.length === 0) {
-                    gridHTML += `
+                    html += `
                         <div class="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100">
                             <i class="fa-solid fa-cat text-6xl text-gray-300 mb-6"></i>
                             <h2 class="text-3xl font-heading font-bold text-gray-700 mb-4">${this.t('noAnimalsTitle')}</h2>
                             <p class="text-gray-500 max-w-lg mx-auto">${this.t('noAnimalsDesc')}</p>
                         </div>
                     `;
-                } else {
-                    gridHTML += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">`;
+                } else if (this.homeView === 'grid') {
+                    html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">`;
                     
                     this.animals.forEach(animal => {
                         const mainImage = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/600x400/eeeeee/999999?text=No+Image';
-                        gridHTML += `
+                        html += `
                             <div class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer flex flex-col h-full border border-gray-100" onclick="app.navigate('detail', '${animal.id}')">
                                 <div class="relative h-64 overflow-hidden bg-gray-100">
                                     <img src="${mainImage}" alt="${animal.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -854,11 +937,13 @@
                             </div>
                         `;
                     });
-                    gridHTML += `</div>`;
+                    html += `</div>`;
+                } else if (this.homeView === 'map') {
+                    html += `<div id="home-pets-map" class="w-full h-[600px] rounded-3xl shadow-lg border border-gray-200 overflow-hidden relative"></div>`;
                 }
                 
-                gridHTML += `</div>`;
-                container.innerHTML = heroHTML + gridHTML;
+                html += `</div>`;
+                container.innerHTML = html;
             },
 
             renderDetail: function(animalIdOrObj) {
@@ -897,6 +982,16 @@
                     </div>
                 `;
 
+                let mapHTML = '';
+                if (animal.lat && animal.lng) {
+                    mapHTML = `
+                        <div class="mt-8 bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                            <h3 class="text-lg font-heading font-bold text-gray-900 p-6 pb-4 border-b border-gray-100 flex items-center"><i class="fa-solid fa-map-location-dot mr-2 text-brand-500"></i> ${this.t('petAddress')}</h3>
+                            <div id="detail-pet-map" class="w-full h-64 relative z-0"></div>
+                        </div>
+                    `;
+                }
+
                 let actionButtonHTML = ``;
                 if (this.role === 'caregiver' || this.role === 'admin') {
                     actionButtonHTML = `
@@ -927,15 +1022,16 @@
                                         </div>
                                         ${thumbnailsHTML}
                                         ${caregiverHTML}
+                                        ${mapHTML}
                                     </div>
                                     
                                     <div class="p-8 lg:p-12 flex flex-col lg:col-span-2">
-                                        <div class="flex flex-col sm:flex-row justify-between items-start mb-4 gap-4">
+                                        <div class="flex justify-between items-start mb-4">
                                             <div>
                                                 <h1 class="text-4xl lg:text-5xl font-heading font-extrabold text-gray-900 mb-2">${animal.name}</h1>
                                                 <p class="text-xl text-brand-600 font-semibold">${animal.breed} &bull; ${this.t(animal.type.toLowerCase())}</p>
                                             </div>
-                                            <div class="text-left sm:text-right w-full sm:w-auto">
+                                            <div class="text-right">
                                                 <span class="inline-block bg-gray-100 text-gray-800 px-4 py-2 rounded-full font-bold text-lg border border-gray-200">${animal.age}</span>
                                             </div>
                                         </div>
@@ -966,6 +1062,24 @@
                     </div>
                 `;
                 container.innerHTML = html;
+
+                // Load map marker for detailed view
+                if (animal.lat && animal.lng) {
+                    setTimeout(() => {
+                        const m = L.map('detail-pet-map').setView([animal.lat, animal.lng], 14);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; OpenStreetMap'
+                        }).addTo(m);
+                        
+                        const icon = L.divIcon({
+                            className: 'custom-pet-marker',
+                            html: `<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-500 shadow-lg bg-white flex items-center justify-center"><img src="${mainImage}" class="w-full h-full object-cover"></div>`,
+                            iconSize: [48, 48],
+                            iconAnchor: [24, 24]
+                        });
+                        L.marker([animal.lat, animal.lng], { icon }).addTo(m);
+                    }, 300);
+                }
             },
 
             renderDashboard: function() {
@@ -1089,6 +1203,51 @@
                     
                     document.getElementById(`dash-content-${t}`).className = t === tabName ? 'block' : 'hidden';
                 });
+
+                if (tabName === 'add') {
+                    setTimeout(() => this.initAddAnimalMap(), 200);
+                }
+            },
+
+            initAddAnimalMap: function() {
+                const mapEl = document.getElementById('add-pet-map');
+                if (!mapEl) return;
+                
+                if (this.addPetMap) {
+                    this.addPetMap.remove();
+                }
+
+                this.addPetMap = L.map('add-pet-map').setView([30.0444, 31.2357], 6);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.addPetMap);
+
+                this.addPetMarker = L.marker([30.0444, 31.2357], { draggable: true }).addTo(this.addPetMap);
+                document.getElementById('add-lat').value = 30.0444;
+                document.getElementById('add-lng').value = 31.2357;
+                
+                // Try geolocation to set local defaults
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(pos => {
+                        this.addPetMap.setView([pos.coords.latitude, pos.coords.longitude], 12);
+                        this.addPetMarker.setLatLng([pos.coords.latitude, pos.coords.longitude]);
+                        document.getElementById('add-lat').value = pos.coords.latitude;
+                        document.getElementById('add-lng').value = pos.coords.longitude;
+                    }, () => {}, { timeout: 5000 });
+                }
+
+                this.addPetMap.on('click', (e) => {
+                    this.addPetMarker.setLatLng(e.latlng);
+                    document.getElementById('add-lat').value = e.latlng.lat;
+                    document.getElementById('add-lng').value = e.latlng.lng;
+                });
+
+                this.addPetMarker.on('dragend', (e) => {
+                    const pos = e.target.getLatLng();
+                    document.getElementById('add-lat').value = pos.lat;
+                    document.getElementById('add-lng').value = pos.lng;
+                });
+                
+                // Invalidate size to ensure it renders correctly after unhiding
+                this.addPetMap.invalidateSize();
             },
 
             renderManageAnimalsList: function(myAnimals, myRequests) {
@@ -1106,15 +1265,15 @@
                     
                     html += `
                         <li>
-                            <div class="px-4 py-4 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between hover:bg-gray-50 transition-colors gap-4">
-                                <div class="flex items-center flex-grow cursor-pointer w-full" onclick="app.navigate('detail', '${animal.id}')">
+                            <div class="px-4 py-4 sm:px-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center flex-grow cursor-pointer" onclick="app.navigate('detail', '${animal.id}')">
                                     <img class="h-16 w-16 rounded-lg object-cover mr-4 shadow-sm" src="${img}" alt="">
                                     <div>
                                         <p class="text-lg font-bold text-gray-900">${animal.name}</p>
                                         <p class="text-sm text-gray-500">${this.t(animal.type.toLowerCase())} &bull; ${animal.breed}</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-end gap-4 w-full sm:w-auto border-t border-gray-100 sm:border-0 pt-2 sm:pt-0">
+                                <div class="flex items-center gap-4">
                                     ${reqCount > 0 ? `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800 border border-brand-200"><i class="fa-solid fa-envelope mr-1"></i> ${reqCount} ${this.t('requests')}</span>` : ''}
                                     <button onclick="app.deleteAnimal('${animal.id}')" class="text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-lg transition-colors border border-red-100" title="Remove Animal">
                                         <i class="fa-solid fa-trash-can"></i>
@@ -1130,7 +1289,7 @@
 
             renderAddAnimalForm: function() {
                 return `
-                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-10 max-w-4xl">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-10 max-w-5xl mx-auto">
                         <form id="form-add-animal" onsubmit="app.submitNewAnimal(event)">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                                 <div class="space-y-6">
@@ -1162,14 +1321,23 @@
                                         <label class="block text-sm font-bold text-gray-700 mb-1">${this.t('petAddress')}</label>
                                         <input type="text" id="add-pet-address" required placeholder="${this.t('petAddressPlaceholder')}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
                                     </div>
+
+                                    <!-- Interactive Location Picker Map -->
+                                    <div class="mt-4">
+                                        <label class="block text-sm font-bold text-gray-700 mb-1">${this.t('pinLocation')}</label>
+                                        <div id="add-pet-map" class="w-full h-[250px] rounded-lg border border-gray-300 relative z-0"></div>
+                                        <input type="hidden" id="add-lat" required>
+                                        <input type="hidden" id="add-lng" required>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="space-y-6">
                                     <div>
                                         <label class="block text-sm font-bold text-gray-700 mb-1">${this.t('uploadPics')}</label>
                                         <input type="file" id="add-images" multiple accept="image/*" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100">
                                         <p class="text-xs text-gray-400 mt-1">${this.t('imgCompressNotice')}</p>
                                     </div>
-                                </div>
-                                
-                                <div class="space-y-6">
                                     <div>
                                         <label class="block text-sm font-bold text-gray-700 mb-1">${this.t('desc')}</label>
                                         <textarea id="add-desc" required rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 resize-none"></textarea>
@@ -1233,9 +1401,9 @@
 
                     html += `
                         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                            <div class="bg-gray-50 px-4 sm:px-6 py-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                                <h4 class="font-bold text-lg text-gray-900 flex flex-wrap items-center gap-2">
-                                    <span class="whitespace-nowrap"><i class="fa-solid fa-user-circle text-brand-500 mr-2 text-xl"></i> ${req.userName}</span>
+                            <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                                <h4 class="font-bold text-lg text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-user-circle text-brand-500 mr-2 text-xl"></i> ${req.userName}
                                     ${animalStatus}
                                 </h4>
                                 <span class="text-sm text-gray-500">${moment(req.createdAt).format('MMM D, YYYY - h:mm A')}</span>
@@ -1405,6 +1573,16 @@
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> ' + this.t('saving');
 
+                const lat = document.getElementById('add-lat').value;
+                const lng = document.getElementById('add-lng').value;
+                
+                if (!lat || !lng) {
+                    this.showNotification("error", "pinRequired", "error");
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-solid fa-plus mr-2"></i> ' + this.t('publish');
+                    return;
+                }
+
                 try {
                     const fileInput = document.getElementById('add-images');
                     const files = Array.from(fileInput.files).slice(0, 3);
@@ -1419,6 +1597,8 @@
                         age: document.getElementById('add-age').value,
                         breed: document.getElementById('add-breed').value,
                         petAddress: document.getElementById('add-pet-address').value,
+                        lat: parseFloat(lat),
+                        lng: parseFloat(lng),
                         description: document.getElementById('add-desc').value,
                         medicalNotes: document.getElementById('add-medical').value,
                         hasFee: hasFee,
