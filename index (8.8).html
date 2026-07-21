@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meowgical Paws</title>
+    <!-- Site Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><path fill=%22%2314b8a6%22 d=%22M226.5 92.9c14.3 7.3 28.9 14.6 42.1 24.3c10.3 7.5 19.8 16.3 28.7 26.1c11.6 12.8 22.8 26.7 32.5 41.5c16.3 24.8 30.1 52.1 41.2 81.3c10.5 27.6 18.5 56.6 23.9 86.8c5.1 28.6 7.6 57.9 7.6 87.1c0 15.6-12.7 28.3-28.3 28.3H109.8c-15.6 0-28.3-12.7-28.3-28.3c0-29.2 2.5-58.5 7.6-87.1c5.4-30.2 13.4-59.2 23.9-86.8c11.1-29.2 24.9-56.5 41.2-81.3c9.7-14.8 20.9-28.7 32.5-41.5c8.9-9.8 18.4-18.6 28.7-26.1c13.2-9.7 27.8-17 42.1-24.3zM153.5 131.6c-18.2-12.8-38.3-23.7-59.6-32.3c-14.5-5.9-29.4-10.9-44.6-14.9c-15.1-4-30.6-6.9-46.3-8.8c-1.5-.2-2.9 1-2.9 2.5V119c0 1.2 .8 2.3 2 2.7c15.2 4.6 30 10.4 44.3 17.2c15.5 7.4 30.5 16 44.7 25.8c14.7 10.1 28.8 21.4 42.1 33.6c1.1 1 2.8 .7 3.6-.5l17.8-23.7c.8-1 1.1-2.5 .3-3.6c-5.7-8.1-11.8-15.9-18.3-23.4zM358.5 131.6c-6.5 7.5-12.6 15.3-18.3 23.4c-.8 1.1-.5 2.6 .3 3.6l17.8 23.7c.8 1.2 2.5 1.5 3.6 .5c13.3-12.2 27.4-23.5 42.1-33.6c14.2-9.8 29.2-18.4 44.7-25.8c14.3-6.8 29.1-12.6 44.3-17.2c1.2-.4 2-1.5 2-2.7V78.1c0-1.5-1.4-2.7-2.9-2.5c-15.7 1.9-31.2 4.8-46.3 8.8c-15.2 4-30.1 9-44.6 14.9c-21.3 8.6-41.4 19.5-59.6 32.3zM67.3 241.6c-13-17.1-24.9-35.1-35.6-53.9c-8-14-15.3-28.5-21.6-43.4c-6.2-14.6-11.5-29.6-15.8-44.9c-2.3-8.1-4.2-16.3-5.6-24.6c-.3-1.6 1-2.9 2.6-2.9h40.4c1.3 0 2.4 .9 2.7 2.1c2 8 4.6 15.8 7.6 23.5c4.7 11.9 10.4 23.4 16.9 34.4c8.4 14.3 18.2 27.9 29.1 40.8c.9 1.1 .9 2.7 .1 3.8l-18.4 23.3c-1 1.2-2.5 1.5-3.8 .6zM444.7 241.6c-1.3 .9-2.8 .6-3.8-.6l-18.4-23.3c-.8-1.1-.8-2.7 .1-3.8c10.9-12.9 20.7-26.5 29.1-40.8c6.5-11 12.2-22.5 16.9-34.4c3-7.7 5.6-15.5 7.6-23.5c.3-1.2 1.4-2.1 2.7-2.1h40.4c1.6 0 2.9 1.3 2.6 2.9c-1.4 8.3-3.3 16.5-5.6 24.6c-4.3 15.3-9.6 30.3-15.8 44.9c-6.3 14.9-13.6 29.4-21.6 43.4c-10.7 18.8-22.6 36.8-35.6 53.9z%22/></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ar.min.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' },
+                        accent: { 500: '#f59e0b', 600: '#d97706' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fafaf9; scroll-behavior: smooth; }
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        input[type="file"]::file-selector-button {
+            border: none; background: #14b8a6; padding: 0.5rem 1rem; border-radius: 0.375rem;
+            color: white; cursor: pointer; transition: background .2s ease-in-out; font-weight: 600;
+        }
+        input[type="file"]::file-selector-button:hover { background: #0d9488; }
+        
+        [dir="rtl"] { font-family: 'Cairo', 'Nunito', sans-serif; }
+        [dir="rtl"] .font-heading { font-family: 'Cairo', 'Poppins', sans-serif; }
+        [dir="rtl"] .mr-1 { margin-right: 0; margin-left: 0.25rem; }
+        [dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+        [dir="rtl"] .mr-3 { margin-right: 0; margin-left: 0.75rem; }
+        [dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+        [dir="rtl"] .mr-4 { margin-right: 0; margin-left: 1rem; }
+        [dir="rtl"] .ml-4 { margin-left: 0; margin-right: 1rem; }
+        [dir="rtl"] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
+        [dir="rtl"] .text-left { text-align: right; }
+        [dir="rtl"] .text-right { text-align: left; }
+        [dir="rtl"] .pl-6 { padding-left: 0; padding-right: 1.5rem; }
+        [dir="rtl"] .border-l { border-left: none; border-right: 1px solid #e5e7eb; }
+
+        .leaflet-container { font-family: inherit; z-index: 10; }
+        .custom-pet-marker { background: none; border: none; }
+        .leaflet-popup-content-wrapper { border-radius: 1rem; overflow: hidden; padding: 0; }
+        .leaflet-popup-content { margin: 0; width: auto !important; }
+        .leaflet-popup-close-button { z-index: 20; color: #666 !important; padding: 4px !important; }
+
+        .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background-color: rgba(20, 184, 166, 0.6); }
+        .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div { background-color: rgba(13, 148, 136, 0.9); color: white; font-family: 'Poppins', 'Cairo', sans-serif; font-weight: bold; }
+        
+        .timeline-line::before { content: ''; position: absolute; top: 12px; left: 16px; bottom: -12px; width: 2px; background: #e5e7eb; z-index: 0; }
+        [dir="rtl"] .timeline-line::before { left: auto; right: 16px; }
+        .timeline-item:last-child .timeline-line::before { display: none; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen flex flex-col relative">
+
+    <nav class="glass-nav fixed w-full z-50 top-0 border-b border-gray-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="app.navigate('home')">
+                    <i class="fa-solid fa-paw text-brand-500 text-3xl mr-2"></i>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-gray-900">Meowgical Paws</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="btn-lang" onclick="app.toggleLanguage()" class="text-sm font-bold text-brand-600 hover:text-brand-800 transition-colors flex items-center gap-1 bg-brand-50 px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-globe"></i> <span id="lang-text">EN</span>
+                    </button>
+
+                    <!-- Notification Bell -->
+                    <button id="btn-notifications" onclick="app.toggleNotificationsModal()" class="hidden relative text-gray-500 hover:text-brand-600 transition-colors text-xl">
+                        <i class="fa-solid fa-bell"></i>
+                        <span id="notif-badge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold shadow-sm">0</span>
+                    </button>
+                    
+                    <button id="nav-user-info" onclick="if(app.user && !app.user.isAnonymous) app.navigate('profile', app.user.uid)" class="text-sm font-semibold text-gray-700 bg-gray-100 px-3 py-1 rounded-full border border-gray-200 flex items-center hover:bg-gray-200 transition-colors cursor-pointer">
+                        <i class="fa-solid fa-user-secret mr-1"></i> <span data-i18n="guest">Guest</span>
+                    </button>
+                    
+                    <button id="btn-auth-open" onclick="app.showAuthModal()" class="text-sm font-medium text-brand-600 hover:text-brand-800 font-bold transition-colors" data-i18n="signInRegister">Sign In / Register</button>
+                    <button id="btn-signout" onclick="app.logout()" class="text-sm font-medium text-red-500 hover:text-red-700 transition-colors hidden" data-i18n="signOut">Sign Out</button>
+
+                    <button id="btn-inbox" onclick="app.navigate('inbox')" class="hidden bg-white text-brand-600 border border-brand-200 hover:bg-brand-50 px-4 py-2 rounded-full font-semibold shadow-sm transition-all flex items-center">
+                        <i class="fa-solid fa-envelope mr-1"></i><span data-i18n="inbox">Inbox</span>
+                        <span id="unread-badge" class="hidden ml-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full font-bold">0</span>
+                    </button>
+
+                    <button id="btn-dashboard" onclick="app.navigate('dashboard')" class="hidden bg-brand-500 hover:bg-brand-600 text-white px-5 py-2 rounded-full font-semibold shadow-md transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-clipboard-list mr-2"></i><span id="dash-btn-text">Dashboard</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app-content" class="flex-grow pt-20 flex flex-col"></main>
+
+    <footer class="bg-gray-900 text-white py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <i class="fa-solid fa-paw text-brand-500 text-4xl mb-4"></i>
+            <h3 class="font-heading text-2xl font-bold mb-2">Meowgical Paws</h3>
+            <p class="text-gray-400 max-w-md mx-auto" data-i18n="footerDesc">Providing a safe place and finding loving forever homes for every animal that comes through our doors.</p>
+        </div>
+    </footer>
+
+    <div id="modal-auth" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-auth')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full z-10 relative">
+                <div class="flex border-b border-gray-200">
+                    <button id="tab-login" onclick="app.switchAuthTab('login')" class="flex-1 py-4 text-center font-bold text-brand-600 border-b-2 border-brand-500" data-i18n="signInTab">Sign In</button>
+                    <button id="tab-register" onclick="app.switchAuthTab('register')" class="flex-1 py-4 text-center font-bold text-gray-500 hover:text-gray-700" data-i18n="registerTab">Create Account</button>
+                </div>
+                <div class="p-6 sm:p-8">
+                    <form id="form-login" onsubmit="app.handleLogin(event)">
+                        <div class="space-y-4">
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="email">Email Address *</label><input type="email" id="login-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-brand-500 outline-none"></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="password">Password *</label><input type="password" id="login-password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-brand-500 outline-none"></div>
+                            <button type="submit" id="btn-submit-login" class="w-full mt-6 py-3 px-4 rounded-lg shadow-sm text-sm font-medium text-white bg-brand-500 hover:bg-brand-600 transition-colors" data-i18n="signInBtn">Sign In</button>
+                        </div>
+                    </form>
+                    <form id="form-register" class="hidden" onsubmit="app.handleRegister(event)">
+                        <div class="space-y-4">
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="accountType">Account Type *</label><select id="reg-role" required onchange="app.toggleCaregiverFields()" class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none"><option value="adopter" data-i18n="adopterTitle">Adopter</option><option value="caregiver" data-i18n="caregiverTitle">Pet Caregiver</option></select></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="fullName">Full Name *</label><input type="text" id="reg-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none"></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="email">Email Address *</label><input type="email" id="reg-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none"></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="password">Password *</label><input type="password" id="reg-password" required minlength="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none"></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="phone">Phone Number *</label><input type="tel" id="reg-phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none"></div>
+                            <div id="caregiver-fields" class="hidden bg-gray-50 p-4 rounded-xl border border-gray-200 mt-4"><h4 class="text-sm font-bold text-brand-700 border-b pb-2 mb-2" data-i18n="caregiverDetails">Caregiver Details</h4><p class="text-xs text-gray-500" data-i18n="caregiverExtraDesc">Admins will review your profile.</p></div>
+                            <button type="submit" id="btn-submit-register" class="w-full mt-6 py-3 px-4 rounded-lg shadow-sm text-sm font-medium text-white bg-brand-500 hover:bg-brand-600 transition-colors" data-i18n="createAccount">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-adopt" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-adopt')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full z-10 relative">
+                <form id="form-adopt" onsubmit="app.submitAdoption(event)">
+                    <div class="px-4 pt-5 pb-4 sm:p-8">
+                        <div class="flex justify-between items-center mb-6"><h3 class="text-2xl font-bold text-gray-900" data-i18n="adoptReqTitle">Adoption Request</h3><button type="button" onclick="app.closeModal('modal-adopt')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button></div>
+                        <div id="guest-adopt-warning" class="hidden bg-blue-50 text-blue-800 p-4 rounded-xl text-sm font-semibold mb-6 flex border border-blue-200"><i class="fa-solid fa-circle-info mr-3 mt-1"></i><span data-i18n="guestAdoptNotice">You are applying as a Guest...</span></div>
+                        <input type="hidden" id="adopt-animal-id"><input type="hidden" id="adopt-animal-name"><input type="hidden" id="adopt-caregiver-id">
+                        <div class="bg-brand-50 rounded-xl p-4 mb-6 flex items-center gap-4"><img id="adopt-animal-img" src="" class="w-16 h-16 object-cover rounded-lg"><div><p class="text-sm font-semibold text-brand-800" data-i18n="youAreApplying">Applying for:</p><p id="adopt-animal-title" class="font-bold text-xl text-brand-900"></p></div></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="fullName">Full Name *</label><input type="text" id="adopt-name" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="phone">Phone *</label><input type="tel" id="adopt-phone" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                            <div class="md:col-span-2"><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="email">Email *</label><input type="email" id="adopt-email" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                        </div>
+                        <div class="mb-6"><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="aboutHome">About home *</label><textarea id="adopt-about" required rows="4" class="w-full px-4 py-2 border rounded-lg outline-none resize-none"></textarea></div>
+                        <div class="mb-6 bg-gray-50 p-5 rounded-xl border border-gray-200">
+                            <div class="mb-4"><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="hadPetBefore">Had pet? *</label><select id="adopt-had-pet" required onchange="app.togglePetQuestions()" class="w-full px-4 py-2 border rounded-lg outline-none"><option value="" disabled selected>Select</option><option value="yes" data-i18n="yes">Yes</option><option value="no" data-i18n="no">No</option></select></div>
+                            <div id="container-still-with-you" class="mb-4 hidden"><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="stillWithYou">Still with you? *</label><select id="adopt-still-with-you" onchange="app.togglePetWhereabouts()" class="w-full px-4 py-2 border rounded-lg outline-none"><option value="" disabled selected>Select</option><option value="yes" data-i18n="yes">Yes</option><option value="no" data-i18n="no">No</option></select></div>
+                            <div id="container-pet-whereabouts" class="hidden"><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="whereAreTheyNow">Where are they? *</label><textarea id="adopt-pet-whereabouts" rows="3" class="w-full px-4 py-2 border rounded-lg outline-none"></textarea></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-4 sm:px-8 flex flex-row-reverse border-t gap-3"><button type="submit" id="btn-submit-adopt" class="w-full sm:w-auto px-6 py-3 bg-brand-500 text-white rounded-lg font-medium hover:bg-brand-600" data-i18n="submitApp">Submit</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="modal-edit-profile" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-edit-profile')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full z-10 relative">
+                <form id="form-edit-profile" onsubmit="app.handleEditProfile(event)">
+                    <div class="px-4 pt-5 pb-4 sm:p-8">
+                        <div class="flex justify-between items-center mb-6"><h3 class="text-2xl font-bold text-gray-900" data-i18n="editProfile">Edit Profile</h3><button type="button" onclick="app.closeModal('modal-edit-profile')" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button></div>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="profilePic">Profile Picture</label><input type="file" id="edit-profile-pic" accept="image/*" class="w-full text-sm text-gray-500"></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="phone">Phone</label><input type="tel" id="edit-profile-phone" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                            <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="bio">About Me</label><textarea id="edit-profile-bio" rows="4" class="w-full px-4 py-2 border rounded-lg outline-none"></textarea></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-4 sm:px-8 flex flex-row-reverse border-t gap-3"><button type="submit" id="btn-submit-edit-profile" class="w-full sm:w-auto px-6 py-3 bg-brand-500 text-white rounded-lg font-medium hover:bg-brand-600" data-i18n="saveChanges">Save</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-message" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-message')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full z-10 relative">
+                <form id="form-message" onsubmit="app.submitMessage(event)">
+                    <input type="hidden" id="msg-receiver-id"><input type="hidden" id="msg-receiver-name-input">
+                    <div class="px-4 pt-5 pb-4 sm:p-8">
+                        <div class="flex justify-between items-center mb-6"><h3 class="text-2xl font-bold text-gray-900"><span data-i18n="newMessageTitle">New Message</span></h3><button type="button" onclick="app.closeModal('modal-message')" class="text-gray-400 text-2xl">&times;</button></div>
+                        <p class="text-sm text-gray-500 mb-4"><span data-i18n="chatWith">Chat with</span> <span id="msg-receiver-name-display" class="font-bold text-brand-600"></span></p>
+                        <div><label class="block text-sm font-semibold text-gray-700 mb-1" data-i18n="typeMessage">Type your message...</label><textarea id="msg-text" required rows="4" class="w-full px-4 py-2 border rounded-lg outline-none"></textarea></div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-4 sm:px-8 flex flex-row-reverse border-t gap-3"><button type="submit" id="btn-submit-message" class="w-full sm:w-auto px-6 py-3 bg-brand-500 text-white rounded-lg font-medium hover:bg-brand-600" data-i18n="send">Send</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Modal -->
+    <div id="modal-notifications" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex justify-end min-h-screen px-4 pt-20 sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-25 transition-opacity" onclick="app.closeModal('modal-notifications')"></div>
+            <div class="inline-block bg-white text-left overflow-hidden shadow-2xl transform transition-all sm:max-w-md sm:w-full h-[80vh] mt-4 mr-4 rounded-2xl flex flex-col z-10 relative">
+                <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                    <h3 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-bell text-brand-500 mr-2"></i><span data-i18n="notifications">Notifications</span></h3>
+                    <button type="button" onclick="app.closeModal('modal-notifications')" class="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
+                </div>
+                <div id="notifications-list" class="flex-grow overflow-y-auto divide-y divide-gray-100 bg-white">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="modal-share" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-share')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full z-10 relative p-6">
+                <div class="flex justify-between items-center mb-6"><h3 class="text-xl font-bold text-gray-900" data-i18n="share">Share</h3><button type="button" onclick="app.closeModal('modal-share')" class="text-gray-400 text-2xl">&times;</button></div>
+                <div class="grid grid-cols-4 gap-4 text-center">
+                    <button onclick="app.shareTo('whatsapp')" class="flex flex-col items-center group"><div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl group-hover:bg-green-500 group-hover:text-white transition-colors mb-2"><i class="fa-brands fa-whatsapp"></i></div><span class="text-xs font-semibold text-gray-600">WhatsApp</span></button>
+                    <button onclick="app.shareTo('facebook')" class="flex flex-col items-center group"><div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl group-hover:bg-blue-600 group-hover:text-white transition-colors mb-2"><i class="fa-brands fa-facebook-f"></i></div><span class="text-xs font-semibold text-gray-600">Facebook</span></button>
+                    <button onclick="app.shareTo('instagram')" class="flex flex-col items-center group"><div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center text-xl group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:text-white transition-all mb-2"><i class="fa-brands fa-instagram"></i></div><span class="text-xs font-semibold text-gray-600">Instagram</span></button>
+                    <button onclick="app.shareTo('copy')" class="flex flex-col items-center group"><div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center text-xl group-hover:bg-brand-500 group-hover:text-white transition-colors mb-2"><i class="fa-solid fa-link"></i></div><span class="text-xs font-semibold text-gray-600">Copy</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div id="modal-report" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-report')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full z-10 relative">
+                <form id="form-report" onsubmit="app.submitReport(event)">
+                    <div class="px-4 pt-5 pb-4 sm:p-8">
+                        <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-bold text-red-600"><i class="fa-solid fa-flag mr-2"></i><span data-i18n="reportListing">Report Listing</span></h3><button type="button" onclick="app.closeModal('modal-report')" class="text-gray-400 text-2xl">&times;</button></div>
+                        <p class="text-sm text-gray-500 mb-4" data-i18n="reportDesc">Please let us know why you are reporting this animal listing.</p>
+                        <textarea id="report-reason" required rows="4" class="w-full px-4 py-2 border rounded-lg outline-none resize-none" data-i18n-placeholder="reason"></textarea>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-4 sm:px-8 flex flex-row-reverse border-t gap-3"><button type="submit" id="btn-submit-report" class="w-full sm:w-auto px-6 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700" data-i18n="submitApp">Submit</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Diary Entry Modal -->
+    <div id="modal-edit-diary" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-edit-diary')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full z-10 relative">
+                <form id="form-edit-diary" onsubmit="app.submitEditDiary(event)">
+                    <input type="hidden" id="edit-diary-animal-id">
+                    <input type="hidden" id="edit-diary-index">
+                    <div class="px-4 pt-5 pb-4 sm:p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-900">Edit Diary Entry</h3>
+                            <button type="button" onclick="app.closeModal('modal-edit-diary')" class="text-gray-400 text-2xl">&times;</button>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Update your note...</label>
+                            <textarea id="edit-diary-text" required rows="4" class="w-full px-4 py-2 border rounded-lg outline-none"></textarea>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-4 sm:px-8 flex flex-row-reverse border-t gap-3">
+                        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-brand-500 text-white rounded-lg font-medium hover:bg-brand-600">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirm Modal -->
+    <div id="modal-confirm" class="hidden fixed inset-0 z-[110] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-confirm')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full z-10 relative">
+                <div class="p-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-triangle-exclamation text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 text-center mb-2" data-i18n="deleteConfirmTitle">Are you sure?</h3>
+                    <p id="confirm-modal-text" class="text-sm text-gray-500 text-center mb-6"></p>
+                    <div class="flex gap-3 justify-center">
+                        <button type="button" onclick="app.closeModal('modal-confirm')" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-sm transition-colors" data-i18n="cancel">Cancel</button>
+                        <button type="button" id="btn-confirm-action" class="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-colors">Yes, Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-edit-animal" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="app.closeModal('modal-edit-animal')"></div>
+            <div class="inline-block bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full z-10 relative">
+                <form id="form-edit-animal" onsubmit="app.submitEditAnimal(event)">
+                    <div class="px-6 pt-6 pb-6 bg-gray-50 border-b flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-gray-900" data-i18n="editListing">Edit Listing</h3>
+                        <button type="button" onclick="app.closeModal('modal-edit-animal')" class="text-gray-400 text-2xl">&times;</button>
+                    </div>
+                    <div class="p-6 sm:p-8 max-h-[60vh] overflow-y-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="animalName">Name *</label><input type="text" id="edit-pet-name" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="age">Age *</label><input type="text" id="edit-pet-age" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="gender">Gender *</label><select id="edit-pet-gender" required class="w-full px-4 py-2 border rounded-lg outline-none"><option value="Male" data-i18n="male">Male</option><option value="Female" data-i18n="female">Female</option></select></div>
+                            </div>
+                            <div class="md:col-span-2"><label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="desc">Description *</label><textarea id="edit-pet-desc" required rows="4" class="w-full px-4 py-2 border rounded-lg outline-none"></textarea></div>
+                            <div class="md:col-span-2"><label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="medicalHistory">Medical Notes</label><textarea id="edit-pet-medical" rows="3" class="w-full px-4 py-2 border rounded-lg outline-none"></textarea></div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="uploadPics">Images</label>
+                                <input type="file" id="edit-pet-images-input" accept="image/*" multiple onchange="app.handleDraftImageUpload(event)" class="mb-3">
+                                <div id="edit-draft-images-container" class="flex gap-3 overflow-x-auto pb-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-4 sm:px-8 flex flex-row-reverse border-t gap-3">
+                        <button type="submit" id="btn-submit-edit-animal" class="w-full sm:w-auto px-6 py-3 bg-brand-500 text-white rounded-lg font-medium hover:bg-brand-600" data-i18n="saveChanges">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification-container" class="fixed top-4 right-4 z-[200] flex flex-col gap-2 pointer-events-none"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, addDoc, updateDoc, deleteDoc, query, where, increment, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = 'safehaven-app-v1';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAX_c-L4qBjZfXx_RnUtXrL3jZQg1uY8Sc",
+            authDomain: "test-1e071.firebaseapp.com",
+            projectId: "test-1e071",
+            storageBucket: "test-1e071.firebasestorage.app",
+            messagingSenderId: "506520791113",
+            appId: "1:506520791113:web:cad8139735243a3fae7798"
+        };
+        
+        const app_fire = initializeApp(firebaseConfig);
+        const auth = getAuth(app_fire);
+        const db = getFirestore(app_fire);
+
+        window.app = {
+            user: null,
+            userProfile: null, 
+            role: 'guest', 
+            animals: [],
+            requests: [],
+            messages: [],
+            notifications: [],
+            reports: [],
+            activeChatUser: null,
+            adminUsersList: [], 
+            adminActiveTab: 'pending',
+            draftImages: [], 
+            editingAnimalId: null,
+            activeSharePet: null,
+            currentView: 'home',
+            homeView: 'grid', 
+            currentFilter: 'All',
+            currentGenderFilter: 'All',
+            currentSort: 'newest', 
+            homeMap: null,
+            markerClusterGroup: null, 
+            addPetMap: null,
+            addPetMarker: null,
+            activeAnimal: null,
+            activeProfileId: null, 
+            userLat: null,
+            userLng: null,
+            searchRadius: 50,
+            chatAttachment: null,
+            mediaRecorder: null,
+            audioChunks: [],
+            recordingSeconds: 0,
+            recordingInterval: null,
+            typingTimeout: null,
+            addressTimeout: null,
+            lang: 'ar', 
+            translations: {
+                en: {
+                    navAppName: "Meowgical Paws",
+                    signInRegister: "Sign In / Register",
+                    signOut: "Sign Out",
+                    signInTab: "Sign In",
+                    registerTab: "Create Account",
+                    accountType: "Account Type *",
+                    password: "Password *",
+                    signInBtn: "Sign In",
+                    createAccount: "Create Account",
+                    caregiverDetails: "Pet Caregiver Details",
+                    loginSuccess: "Successfully signed in!",
+                    regSuccess: "Account created successfully!",
+                    authError: "Authentication failed. Please check your details.",
+                    aboutCaregiver: "Caregiver Contact",
+                    adoptReqTitle: "Adoption Request",
+                    youAreApplying: "You are applying to adopt:",
+                    fullName: "Full Name *",
+                    phone: "Phone Number *",
+                    email: "Email Address *",
+                    aboutHome: "Tell us about yourself and your home environment *",
+                    submitApp: "Submit Application",
+                    cancel: "Cancel",
+                    dashboardBtn: "Caregiver Dashboard",
+                    adminDashBtn: "Admin Dashboard",
+                    caregiverTitle: "Pet Caregiver",
+                    adopterTitle: "Adopter",
+                    heroTitle: "Find Your New Best Friend",
+                    heroDesc: "Give a rescue animal a second chance at happiness. Browse our available pets below.",
+                    noAnimalsTitle: "No animals available right now.",
+                    added: "Added",
+                    meet: "Meet",
+                    noDesc: "No description provided.",
+                    backToAll: "Back to all animals",
+                    adoptionFee: "Adoption Fee",
+                    feeWaived: "Fee Waived",
+                    aboutAnimal: "About",
+                    medicalHistory: "Medical History & Notes",
+                    adminNotice: "You are logged in as a Caregiver/Admin. You cannot apply to adopt your own pets.",
+                    applyToAdopt: "Apply to Adopt",
+                    guestAdoptNotice: "You are applying as a Guest. To track your applications, please sign in or create an account.",
+                    dashTitle: "Caregiver Dashboard",
+                    dashDesc: "Manage your animals and review adoption applications.",
+                    tabManage: "Manage Animals",
+                    tabAdd: "Add New Animal",
+                    tabRequests: "Adoption Requests",
+                    noAnimalsAdded: "You haven't added any animals yet.",
+                    addFirstAnimal: "Add your first animal",
+                    animalName: "Animal Name *",
+                    type: "Type *",
+                    age: "Age *",
+                    gender: "Gender *",
+                    male: "Male",
+                    female: "Female",
+                    allGenders: "All Genders",
+                    breed: "Breed *",
+                    petAddress: "Pet Address / Location *",
+                    uploadPics: "Upload Pictures",
+                    imgCompressNotice: "Images will be compressed automatically.",
+                    desc: "Description *",
+                    requiresFee: "Requires Adoption Fee",
+                    feeAmount: "Fee Amount ($)",
+                    publish: "Publish Animal",
+                    noRequests: "No Adoption Requests Yet",
+                    contactInfo: "Contact Info",
+                    aboutAdopter: "About the Adopter",
+                    archive: "Archive",
+                    replyEmail: "Reply via Email",
+                    animalRemoved: "Animal Removed",
+                    success: "Success!",
+                    error: "Error",
+                    reqSent: "Your adoption request has been sent to the caregiver.",
+                    animalAddedSuccess: "The animal has been successfully published to the site.",
+                    uploadFailed: "An error occurred.",
+                    allPets: "All Pets", dog: "Dog", cat: "Cat", bird: "Bird", "small pet": "Small Pet", other: "Other",
+                    submitting: "Submitting...",
+                    saving: "Saving...",
+                    for: "For",
+                    deleteConfirm: "Are you sure you want to remove this animal? This action cannot be undone.",
+                    hadPetBefore: "Did you have a pet before? *",
+                    stillWithYou: "Is this pet still with you? *",
+                    whereAreTheyNow: "Where are they now and why aren't they with you? *",
+                    yes: "Yes",
+                    no: "No",
+                    guest: "Guest (Not Signed In)",
+                    pendingTitle: "Account Pending Approval",
+                    pendingDesc: "An Admin must approve your caregiver account before you can upload pets. Please check back later.",
+                    adminApproveTitle: "System Administration",
+                    adminApproveDesc: "Review and approve pending Pet Caregiver accounts.",
+                    approveCaregiver: "Approve Account",
+                    noPending: "No pending caregiver accounts.",
+                    approvedSuccess: "Caregiver approved successfully.",
+                    gridView: "Grid View",
+                    mapView: "Map View",
+                    pinLocation: "Pin Location on Map *",
+                    myFavorites: "Saved Pets",
+                    views: "Views",
+                    favorites: "Favorites",
+                    applications: "Applications",
+                    pinPetInfo: "Pin Location on Map (Optional)",
+                    sortBy: "Sort By", newest: "Newest", oldest: "Oldest", youngest: "Youngest", oldestAge: "Oldest Age",
+                    myProfile: "My Profile", editProfile: "Edit Profile", saveChanges: "Save Changes", bio: "About Me",
+                    profilePic: "Profile Picture", caregiverPets: "Pets Cared By", caregiverExtraDesc: "Admins will review your profile before you can add pets.",
+                    inbox: "Inbox", sendMessage: "Send Message", typeMessage: "Type your message...", send: "Send", noMessages: "No messages yet.", backToInbox: "Back to Inbox", chatWith: "Chat with", newMessageTitle: "New Message",
+                    surpriseMe: "Surprise Me!", share: "Share", reportListing: "Report Listing", reportDesc: "Why are you reporting this listing?", reason: "Reason...", editListing: "Edit Listing", petDiary: "Pet Diary / Updates", addUpdate: "Add Update", notifications: "Notifications", myApplications: "My Applications", statusPending: "Submitted", statusReview: "Under Review", statusApproved: "Approved", statusAdopted: "Adopted", statusRejected: "Rejected", dismiss: "Dismiss", deleteListing: "Delete Listing", updateStatus: "Update Status", reportsTab: "Reports", noReports: "No active reports.",
+                    nearMe: "Near Me",
+                    searchRadius: "Search Radius",
+                    suspend: "Suspend",
+                    unsuspend: "Unsuspend",
+                    block: "Block",
+                    unblock: "Unblock",
+                    userSuspended: "Your account has been suspended by an administrator.",
+                    typing: "is typing...",
+                    online: "Online",
+                    offline: "Offline",
+                    audioMessage: "Voice Message",
+                    footerDesc: "Providing a safe place and finding loving forever homes for every animal that comes through our doors."
+                },
+                ar: {
+                    navAppName: "Meowgical Paws",
+                    signInRegister: "تسجيل الدخول / حساب جديد",
+                    signOut: "تسجيل الخروج",
+                    signInTab: "تسجيل الدخول",
+                    registerTab: "حساب جديد",
+                    accountType: "نوع الحساب *",
+                    password: "كلمة المرور *",
+                    signInBtn: "دخول",
+                    createAccount: "إنشاء الحساب",
+                    caregiverDetails: "بيانات الرعاية",
+                    loginSuccess: "تم تسجيل الدخول بنجاح!",
+                    regSuccess: "تم إنشاء الحساب بنجاح!",
+                    authError: "فشل الدخول. تأكد من البيانات.",
+                    aboutCaregiver: "بيانات التواصل للرعاية",
+                    adoptReqTitle: "طلب تبني",
+                    youAreApplying: "أنت بتقدم لتبني:",
+                    fullName: "الاسم *",
+                    phone: "رقم التليفون *",
+                    email: "البريد الإلكتروني *",
+                    aboutHome: "كلمنا عن نفسك وعن بيئتك *",
+                    submitApp: "تقديم الطلب",
+                    cancel: "إلغاء",
+                    dashboardBtn: "لوحة التحكم",
+                    adminDashBtn: "الإدارة",
+                    caregiverTitle: "مقدم رعاية",
+                    adopterTitle: "متبني",
+                    heroTitle: "دور على صاحبك الجديد",
+                    heroDesc: "إدي فرصة تانية وحياة سعيدة لحيوان أليف.",
+                    noAnimalsTitle: "مفيش حيوانات متاحة دلوقتي.",
+                    added: "تمت إضافته",
+                    meet: "قابل",
+                    noDesc: "مفيش وصف متاح.",
+                    backToAll: "الرجوع لكل الحيوانات",
+                    adoptionFee: "مصاريف التبني",
+                    feeWaived: "بدون مصاريف",
+                    aboutAnimal: "عن",
+                    medicalHistory: "التاريخ الطبي والملاحظات",
+                    adminNotice: "أنت مسجل دخول كمقدم رعاية / مدير. لا يمكنك تقديم طلب تبني.",
+                    applyToAdopt: "قدم لتبني",
+                    guestAdoptNotice: "أنت تقدم كزائر. لمتابعة طلباتك، سجل الدخول.",
+                    dashTitle: "لوحة تحكم الرعاية",
+                    dashDesc: "إدارة الحيوانات وطلبات التبني.",
+                    tabManage: "إدارة الحيوانات",
+                    tabAdd: "إضافة حيوان جديد",
+                    tabRequests: "طلبات التبني",
+                    noAnimalsAdded: "أنت لسه مضفتش أي حيوانات.",
+                    addFirstAnimal: "ضيف أول حيوان ليك",
+                    animalName: "اسم الحيوان *",
+                    type: "النوع *",
+                    age: "السن *",
+                    gender: "النوع (الجنس) *",
+                    male: "ذكر",
+                    female: "أنثى",
+                    allGenders: "كل الأنواع",
+                    breed: "السلالة *",
+                    petAddress: "عنوان الحيوان *",
+                    uploadPics: "رفع الصور",
+                    imgCompressNotice: "الصور هتتضغط تلقائياً.",
+                    desc: "الوصف *",
+                    requiresFee: "مطلوب مصاريف",
+                    feeAmount: "مبلغ التبني ($)",
+                    publish: "نشر الحيوان",
+                    noRequests: "مفيش طلبات تبني لسه",
+                    contactInfo: "التواصل",
+                    aboutAdopter: "عن المتبني",
+                    archive: "أرشفة",
+                    replyEmail: "الرد بالإيميل",
+                    animalRemoved: "الحيوان اتحذف",
+                    success: "نجاح!",
+                    error: "خطأ",
+                    reqSent: "تم إرسال طلب التبني.",
+                    animalAddedSuccess: "تم نشر الحيوان بنجاح.",
+                    uploadFailed: "حصلت مشكلة.",
+                    allPets: "الكل", dog: "كلب", cat: "قطة", bird: "عصفور", "small pet": "حيوان صغير", other: "أخرى",
+                    submitting: "جاري التقديم...",
+                    saving: "جاري الحفظ...",
+                    for: "لـ",
+                    deleteConfirm: "متأكد إنك عايز تحذف؟",
+                    hadPetBefore: "هل كان لديك حيوان؟ *",
+                    stillWithYou: "هل لا يزال معك؟ *",
+                    whereAreTheyNow: "أين هم الآن؟ *",
+                    yes: "نعم",
+                    no: "لا",
+                    guest: "زائر (غير مسجل)",
+                    pendingTitle: "حسابك قيد المراجعة",
+                    pendingDesc: "انتظر موافقة الإدارة لإضافة حيوانات.",
+                    adminApproveTitle: "إدارة النظام",
+                    adminApproveDesc: "مراجعة حسابات الرعاية.",
+                    approveCaregiver: "موافقة",
+                    noPending: "لا توجد حسابات معلقة.",
+                    approvedSuccess: "تمت الموافقة بنجاح.",
+                    gridView: "عرض شبكي",
+                    mapView: "عرض الخريطة",
+                    pinLocation: "حدد الموقع على الخريطة *",
+                    myFavorites: "المحفوظة",
+                    views: "المشاهدات",
+                    favorites: "المفضلات",
+                    applications: "الطلبات",
+                    pinPetInfo: "حدد الموقع (إختياري)",
+                    sortBy: "ترتيب حسب", newest: "الأحدث", oldest: "الأقدم", youngest: "الأصغر", oldestAge: "الأكبر",
+                    myProfile: "حسابي", editProfile: "تعديل الحساب", saveChanges: "حفظ", bio: "نبذة عني",
+                    profilePic: "الصورة", caregiverPets: "حيوانات برعاية", caregiverExtraDesc: "سيقوم المدير بمراجعة حسابك.",
+                    inbox: "الوارد", sendMessage: "إرسال رسالة", typeMessage: "اكتب...", send: "إرسال", noMessages: "لا رسائل.", backToInbox: "الرجوع", chatWith: "محادثة مع", newMessageTitle: "رسالة جديدة",
+                    surpriseMe: "مفاجأة!", share: "مشاركة", reportListing: "إبلاغ عن الحيوان", reportDesc: "لماذا تبلغ عن هذا الحيوان؟", reason: "السبب...", editListing: "تعديل البيانات", petDiary: "يوميات الحيوان", addUpdate: "إضافة تحديث", notifications: "الإشعارات", myApplications: "طلباتي", statusPending: "تم التقديم", statusReview: "قيد المراجعة", statusApproved: "تمت الموافقة", statusAdopted: "تم التبني", statusRejected: "مرفوض", dismiss: "إخفاء", deleteListing: "حذف الحيوان", updateStatus: "تحديث الحالة", reportsTab: "البلاغات", noReports: "لا توجد بلاغات.",
+                    nearMe: "قريب مني",
+                    searchRadius: "نطاق البحث",
+                    suspend: "إيقاف",
+                    unsuspend: "تفعيل",
+                    block: "حظر",
+                    unblock: "إلغاء الحظر",
+                    userSuspended: "تم إيقاف حسابك من قبل الإدارة.",
+                    typing: "يكتب...",
+                    online: "متصل",
+                    offline: "غير متصل",
+                    audioMessage: "رسالة صوتية",
+                    footerDesc: "توفير مكان آمن وإيجاد منازل محبة لكل حيوان يأتي عبر أبوابنا."
+                }
+            },
+            
+            t: function(key) { return this.translations[this.lang][key] || key; },
+
+            toggleLanguage: function() {
+                this.lang = this.lang === 'en' ? 'ar' : 'en';
+                document.documentElement.dir = this.lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = this.lang;
+                document.getElementById('lang-text').textContent = this.lang === 'en' ? 'عربي' : 'EN';
+                moment.locale(this.lang);
+                this.translateDOM();
+                this.updateNavUI();
+                this.refreshCurrentView();
+            },
+
+            translateDOM: function() {
+                document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = this.t(el.getAttribute('data-i18n')); });
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = this.t(el.getAttribute('data-i18n-placeholder')); });
+            },
+            
+            getRef: (col) => collection(db, 'artifacts', appId, 'public', 'data', col),
+            getDoc: (col, id) => doc(db, 'artifacts', appId, 'public', 'data', col, id),
+
+            init: async function() {
+                moment.locale(this.lang);
+                this.translateDOM(); 
+
+                document.addEventListener('visibilitychange', () => {
+                    if (this.user && !this.user.isAnonymous) {
+                        updateDoc(this.getDoc('users', this.user.uid), { 
+                            online: document.visibilityState === 'visible', 
+                            lastActive: new Date().toISOString() 
+                        }).catch(()=>{});
+                    }
+                });
+
+                // Wait for existing auth session to restore from local storage
+                if (auth.authStateReady) {
+                    await auth.authStateReady();
+                } else {
+                    await new Promise(resolve => {
+                        const unsub = onAuthStateChanged(auth, () => { unsub(); resolve(); });
+                    });
+                }
+
+                // Only sign in automatically if no previous session was found
+                if (!auth.currentUser) {
+                    try {
+                        const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+                        if (token) {
+                            await signInWithCustomToken(auth, token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    } catch (authError) {
+                        console.error("Auth precheck anonymous/token sign-in failed:", authError);
+                    }
+                }
+
+                this.loadPublicAnimals();
+
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        this.user = user;
+                        if (!user.isAnonymous) {
+                            updateDoc(this.getDoc('users', user.uid), { online: true, lastActive: new Date().toISOString() }).catch(()=>{});
+                        }
+
+                        if (user.isAnonymous) {
+                            this.role = 'guest';
+                            this.userProfile = null;
+                        } else if (user.email === 'admin@meowgical.com') {
+                            this.role = 'admin';
+                            this.userProfile = { name: 'System Admin', role: 'admin', approved: true };
+                            this.setupAdminSubscriptions();
+                            this.loadAdminReports();
+                        } else {
+                            await this.loadUserProfile();
+                            if (this.userProfile && this.userProfile.suspended) {
+                                this.showNotification("error", "userSuspended", "error");
+                                await signOut(auth);
+                                return;
+                            }
+                        }
+                        this.loadPrivateRequests();
+                        this.loadPrivateMessages();
+                        this.loadPrivateNotifications();
+                    } else {
+                        this.user = null;
+                        this.userProfile = null;
+                        this.role = 'guest';
+                        this.requests = [];
+                        this.messages = [];
+                        this.notifications = [];
+                        if (['dashboard', 'inbox', 'profile'].includes(this.currentView)) {
+                            this.navigate('home');
+                        }
+                    }
+                    this.updateNavUI();
+                    this.refreshCurrentView(); // Ensures UI (like Favorites) catches up immediately upon login/logout!
+                });
+
+                // Deep Linking
+                setTimeout(() => {
+                    const hash = window.location.hash;
+                    if(hash.startsWith('#pet=')) {
+                        const pid = hash.split('=')[1];
+                        if(this.animals.find(a=>a.id === pid)) this.navigate('detail', pid);
+                    }
+                }, 1000);
+            },
+
+            loadPublicAnimals: function() {
+                onSnapshot(this.getRef('animals'), (snapshot) => {
+                    this.animals = [];
+                    snapshot.forEach((doc) => { this.animals.push({ id: doc.id, ...doc.data() }); });
+                    this.animals.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    
+                    const hash = window.location.hash;
+                    if (hash && hash.startsWith('#pet=')) {
+                        const pid = hash.split('=')[1];
+                        const pet = this.animals.find(a => a.id === pid);
+                        if (pet && this.currentView !== 'detail') {
+                            this.navigate('detail', pid);
+                        }
+                    }
+
+                    this.refreshCurrentView();
+                }, () => {});
+            },
+
+            loadPrivateRequests: function() {
+                if (!this.user || this.role === 'admin' || this.role === 'guest') return;
+                let q = this.role === 'caregiver' ? query(this.getRef('requests'), where('shelterAdminId', '==', this.user.uid)) : query(this.getRef('requests'), where('userId', '==', this.user.uid));
+                onSnapshot(q, (snapshot) => {
+                    this.requests = [];
+                    snapshot.forEach((doc) => { this.requests.push({ id: doc.id, ...doc.data() }); });
+                    this.requests.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    if (this.currentView === 'dashboard' || this.currentView === 'profile') this.refreshCurrentView();
+                }, () => {});
+            },
+
+            loadPrivateMessages: function() {
+                if (!this.user) return;
+                onSnapshot(query(this.getRef('messages'), where('participants', 'array-contains', this.user.uid)), (snapshot) => {
+                    this.messages = [];
+                    let unread = 0;
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        this.messages.push({ id: doc.id, ...data });
+                        if (data.receiverId === this.user.uid && !data.read) unread++;
+                    });
+                    this.messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                    const badge = document.getElementById('unread-badge');
+                    if (badge) {
+                        badge.textContent = unread;
+                        badge.classList.toggle('hidden', unread === 0);
+                    }
+                    if (this.currentView === 'inbox') this.renderInbox();
+                });
+            },
+
+            loadPrivateNotifications: function() {
+                if (!this.user) return;
+                onSnapshot(query(this.getRef('notifications'), where('userId', '==', this.user.uid)), (snapshot) => {
+                    this.notifications = [];
+                    let unread = 0;
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        this.notifications.push({ id: doc.id, ...data });
+                        if (!data.read) unread++;
+                    });
+                    this.notifications.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    const btn = document.getElementById('btn-notifications');
+                    const badge = document.getElementById('notif-badge');
+                    if (btn && badge) {
+                        btn.classList.remove('hidden');
+                        badge.textContent = unread;
+                        badge.classList.toggle('hidden', unread === 0);
+                    }
+                    this.renderNotificationsList();
+                });
+            },
+
+            loadAdminReports: function() {
+                if (this.role !== 'admin') return;
+                onSnapshot(this.getRef('reports'), (snapshot) => {
+                    this.reports = [];
+                    snapshot.forEach(doc => this.reports.push({id: doc.id, ...doc.data()}));
+                    this.reports.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    if (this.currentView === 'dashboard') this.renderAdminDashboard();
+                });
+            },
+
+            setupAdminSubscriptions: function() {
+                onSnapshot(this.getRef('users'), (snapshot) => {
+                    this.adminUsersList = [];
+                    snapshot.forEach((doc) => { this.adminUsersList.push({ id: doc.id, ...doc.data() }); });
+                    if (this.currentView === 'dashboard' && this.role === 'admin') this.renderAdminDashboard();
+                }, () => {});
+            },
+
+            loadUserProfile: async function() {
+                try {
+                    const docSnap = await getDoc(this.getDoc('users', this.user.uid));
+                    if (docSnap.exists()) {
+                        this.userProfile = docSnap.data();
+                        this.role = this.userProfile.role;
+                        if (!this.userProfile.favorites) this.userProfile.favorites = [];
+                    } else {
+                        this.userProfile = { role: 'adopter', name: 'User', approved: true, favorites: [] };
+                        this.role = 'adopter';
+                    }
+                } catch (e) { 
+                    this.userProfile = { role: 'adopter', name: 'User', approved: true, favorites: [] };
+                    this.role = 'adopter';
+                }
+            },
+
+            sendNotification: async function(userId, title, message, type, linkData) {
+                if(!userId || userId === 'guest') return;
+                await addDoc(this.getRef('notifications'), {
+                    userId, title, message, type, linkData, read: false, createdAt: new Date().toISOString()
+                });
+            },
+
+            updateNavUI: function() {
+                const btnDash = document.getElementById('btn-dashboard');
+                const dashText = document.getElementById('dash-btn-text');
+                const btnAuth = document.getElementById('btn-auth-open');
+                const btnSignout = document.getElementById('btn-signout');
+                const userInfo = document.getElementById('nav-user-info');
+                const btnInbox = document.getElementById('btn-inbox');
+                const btnNotif = document.getElementById('btn-notifications');
+                
+                if (this.role !== 'guest' && this.userProfile) {
+                    btnAuth.classList.add('hidden');
+                    btnSignout.classList.remove('hidden');
+                    if(btnInbox) btnInbox.classList.remove('hidden');
+                    if(btnNotif) btnNotif.classList.remove('hidden');
+                    
+                    userInfo.classList.remove('hidden');
+                    userInfo.classList.replace('bg-gray-100', 'bg-brand-50');
+                    userInfo.classList.replace('text-gray-700', 'text-brand-700');
+
+                    if (this.role === 'caregiver') {
+                        btnDash.classList.remove('hidden');
+                        dashText.textContent = this.t('dashboardBtn');
+                        userInfo.innerHTML = `<i class="fa-solid fa-house-chimney-medical mr-1"></i> ${this.userProfile.name || this.t('caregiverTitle')}`;
+                    } else if (this.role === 'admin') {
+                        btnDash.classList.remove('hidden');
+                        dashText.textContent = this.t('adminDashBtn');
+                        userInfo.innerHTML = `<i class="fa-solid fa-shield-halved mr-1"></i> Admin`;
+                    } else {
+                        btnDash.classList.add('hidden');
+                        userInfo.innerHTML = `<i class="fa-solid fa-user mr-1"></i> ${this.userProfile.name || this.t('adopterTitle')}`;
+                    }
+                } else {
+                    btnAuth.classList.remove('hidden');
+                    btnSignout.classList.add('hidden');
+                    btnDash.classList.add('hidden');
+                    if(btnInbox) btnInbox.classList.add('hidden');
+                    if(btnNotif) btnNotif.classList.add('hidden');
+                    
+                    userInfo.classList.remove('hidden');
+                    userInfo.classList.replace('bg-brand-50', 'bg-gray-100');
+                    userInfo.classList.replace('text-brand-700', 'text-gray-700');
+                    userInfo.innerHTML = `<i class="fa-solid fa-user-secret mr-1"></i> ${this.t('guest')}`;
+                }
+            },
+
+            showAuthModal: function() { this.switchAuthTab('login'); document.getElementById('modal-auth').classList.remove('hidden'); },
+            switchAuthTab: function(tab) {
+                const tabLogin = document.getElementById('tab-login'); const tabReg = document.getElementById('tab-register');
+                const formLogin = document.getElementById('form-login'); const formReg = document.getElementById('form-register');
+                if (tab === 'login') {
+                    tabLogin.className = "flex-1 py-4 text-center font-bold text-brand-600 border-b-2 border-brand-500"; tabReg.className = "flex-1 py-4 text-center font-bold text-gray-500 hover:text-gray-700";
+                    formLogin.classList.remove('hidden'); formReg.classList.add('hidden');
+                } else {
+                    tabReg.className = "flex-1 py-4 text-center font-bold text-brand-600 border-b-2 border-brand-500"; tabLogin.className = "flex-1 py-4 text-center font-bold text-gray-500 hover:text-gray-700";
+                    formReg.classList.remove('hidden'); formLogin.classList.add('hidden');
+                }
+            },
+            toggleCaregiverFields: function() {
+                const role = document.getElementById('reg-role').value;
+                document.getElementById('caregiver-fields').classList.toggle('hidden', role !== 'caregiver');
+            },
+
+            confirmAction: function(message, onConfirm) {
+                document.getElementById('confirm-modal-text').textContent = message;
+                const confirmBtn = document.getElementById('btn-confirm-action');
+                confirmBtn.onclick = () => {
+                    onConfirm();
+                    this.closeModal('modal-confirm');
+                };
+                document.getElementById('modal-confirm').classList.remove('hidden');
+            },
+
+            handleLogin: async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btn-submit-login'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+                try {
+                    await signInWithEmailAndPassword(auth, document.getElementById('login-email').value, document.getElementById('login-password').value);
+                    this.closeModal('modal-auth'); this.showNotification("success", "loginSuccess", "success");
+                } catch (err) { this.showNotification("error", "authError", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('signInBtn'); }
+            },
+
+            handleRegister: async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btn-submit-register'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+                try {
+                    const role = document.getElementById('reg-role').value;
+                    const cred = await createUserWithEmailAndPassword(auth, document.getElementById('reg-email').value, document.getElementById('reg-password').value);
+                    const userData = { uid: cred.user.uid, email: cred.user.email, name: document.getElementById('reg-name').value, role: role, phone: document.getElementById('reg-phone').value, favorites: [], createdAt: new Date().toISOString(), approved: role !== 'caregiver' };
+                    await setDoc(this.getDoc('users', cred.user.uid), userData);
+                    this.closeModal('modal-auth'); this.showNotification("success", "regSuccess", "success");
+                } catch (err) { this.showNotification("error", "authError", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('createAccount'); }
+            },
+
+            logout: async function() { await signOut(auth); },
+
+            toggleFavorite: async function(animalId) {
+                if (!this.user || this.role === 'guest') return this.showAuthModal(); // Protected against guest crashes!
+                const isFav = this.userProfile.favorites?.includes(animalId);
+                const userRef = this.getDoc('users', this.user.uid);
+                const animalRef = this.getDoc('animals', animalId);
+                try {
+                    if (isFav) {
+                        await updateDoc(userRef, { favorites: arrayRemove(animalId) });
+                        await updateDoc(animalRef, { favoriteCount: increment(-1) });
+                        this.userProfile.favorites = this.userProfile.favorites.filter(id => id !== animalId);
+                    } else {
+                        await updateDoc(userRef, { favorites: arrayUnion(animalId) });
+                        await updateDoc(animalRef, { favoriteCount: increment(1) });
+                        if(!this.userProfile.favorites) this.userProfile.favorites = [];
+                        this.userProfile.favorites.push(animalId);
+                    }
+                    this.refreshCurrentView();
+                } catch(e) {}
+            },
+
+            navigate: function(view, data = null) {
+                this.currentView = view;
+                window.scrollTo(0, 0);
+                window.location.hash = (view === 'detail' && data) ? '#pet='+data : '';
+                
+                if (view === 'home') {
+                    this.renderHome();
+                    if (this.homeView === 'map') setTimeout(() => this.initHomeMap(), 100);
+                }
+                else if (view === 'detail') this.renderDetail(data);
+                else if (view === 'profile') this.renderProfile(data);
+                else if (view === 'dashboard') {
+                    if (this.role !== 'caregiver' && this.role !== 'admin') return this.navigate('home');
+                    this.renderDashboard();
+                }
+                else if (view === 'inbox') this.renderInbox();
+            },
+
+            refreshCurrentView: function() {
+                if (this.currentView === 'home') {
+                    this.renderHome();
+                    if (this.homeView === 'map') setTimeout(() => this.initHomeMap(), 100);
+                }
+                else if (this.currentView === 'detail' && this.activeAnimal) {
+                    const updatedAnimal = this.animals.find(a => a.id === this.activeAnimal.id);
+                    if (updatedAnimal) this.renderDetail(updatedAnimal); else this.navigate('home');
+                }
+                else if (this.currentView === 'profile' && this.activeProfileId) this.renderProfile(this.activeProfileId);
+                else if (this.currentView === 'dashboard') this.renderDashboard();
+                else if (this.currentView === 'inbox') this.renderInbox();
+            },
+
+            surpriseMe: function() {
+                if (this.animals.length === 0) return this.showNotification("error", "noAnimalsTitle", "error");
+                const random = this.animals[Math.floor(Math.random() * this.animals.length)];
+                this.navigate('detail', random.id);
+            },
+
+            copyText: function(text) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        this.showNotification('success', 'Address copied!', 'success');
+                    }).catch(err => {
+                        this.fallbackCopyText(text);
+                    });
+                } else {
+                    this.fallbackCopyText(text);
+                }
+            },
+
+            fallbackCopyText: function(text) {
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = text;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                try {
+                    document.execCommand('copy');
+                    this.showNotification("success", "Address copied!", "success");
+                } catch (e) {
+                    this.showNotification("error", "Failed to copy address.", "error");
+                }
+                document.body.removeChild(tempTextArea);
+            },
+
+            searchAddressSuggestions: function(query) {
+                if(this.addressTimeout) clearTimeout(this.addressTimeout);
+                const suggBox = document.getElementById('address-suggestions');
+                if(!suggBox) return;
+                if(!query || query.length < 3) { suggBox.classList.add('hidden'); return; }
+                
+                this.addressTimeout = setTimeout(async () => {
+                    try {
+                        // Using Egypt specific bounding and current language to make it VERY conclusive!
+                        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=eg&accept-language=${this.lang}&limit=8`);
+                        const data = await res.json();
+                        if(data && data.length > 0) {
+                            let html = '';
+                            data.forEach(item => {
+                                html += `<div class="px-4 py-3 hover:bg-brand-50 cursor-pointer text-sm text-gray-700 border-b border-gray-100 last:border-b-0 transition-colors" onmousedown="app.selectAddressSuggestion('${item.lat}', '${item.lon}', '${item.display_name.replace(/'/g, "\\'")}')"><i class="fa-solid fa-location-dot text-brand-500 mr-2"></i>${item.display_name}</div>`;
+                            });
+                            suggBox.innerHTML = html;
+                            suggBox.classList.remove('hidden');
+                        } else {
+                            suggBox.classList.add('hidden');
+                        }
+                    } catch(e) { console.error(e); }
+                }, 400);
+            },
+            
+            selectAddressSuggestion: function(lat, lng, address) {
+                const addInput = document.getElementById('add-pet-address');
+                if(addInput) addInput.value = address;
+                const suggBox = document.getElementById('address-suggestions');
+                if(suggBox) suggBox.classList.add('hidden');
+                
+                document.getElementById('add-lat').value = lat;
+                document.getElementById('add-lng').value = lng;
+                if(this.addPetMap && this.addPetMarker) {
+                    this.addPetMarker.setLatLng([lat, lng]);
+                    this.addPetMap.setView([lat, lng], 14);
+                }
+            },
+
+            geocodeLatLng: async function(lat, lng, inputId) {
+                try {
+                    // Accepts the current language (e.g. Arabic)
+                    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=${this.lang}`);
+                    const data = await res.json();
+                    if(data && data.display_name) {
+                        const inputField = document.getElementById(inputId);
+                        if(inputField) inputField.value = data.display_name;
+                    }
+                } catch(e) { console.error('Geocoding error', e); }
+            },
+
+            setHomeView: function(view) { this.homeView = view; this.renderHome(); if (view === 'map') setTimeout(() => this.initHomeMap(), 100); },
+            setFilter: function(filterType) { this.currentFilter = filterType; this.refreshCurrentView(); if (this.homeView === 'map') setTimeout(() => this.initHomeMap(), 100); },
+            setGenderFilter: function(genderType) { this.currentGenderFilter = genderType; this.refreshCurrentView(); if (this.homeView === 'map') setTimeout(() => this.initHomeMap(), 100); },
+            setSort: function(sortType) { this.currentSort = sortType; this.refreshCurrentView(); },
+
+            requestLocation: function() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (pos) => {
+                            this.userLat = pos.coords.latitude;
+                            this.userLng = pos.coords.longitude;
+                            this.refreshCurrentView();
+                        },
+                        () => this.showNotification("error", "Location access denied.", "error")
+                    );
+                } else {
+                    this.showNotification("error", "Geolocation not supported.", "error");
+                }
+            },
+            updateSearchRadius: function(val) {
+                this.searchRadius = parseInt(val);
+                if (this.userLat) this.refreshCurrentView();
+            },
+            clearLocation: function() {
+                this.userLat = null; 
+                this.userLng = null;
+                this.refreshCurrentView();
+            },
+            calculateDistance: function(lat1, lon1, lat2, lon2) {
+                const R = 6371; 
+                const dLat = (lat2 - lat1) * Math.PI / 180;
+                const dLon = (lon2 - lon1) * Math.PI / 180;
+                const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                return R * c;
+            },
+
+            initHomeMap: function() {
+                if (this.homeMap) { this.homeMap.remove(); this.homeMap = null; }
+                const mapEl = document.getElementById('home-pets-map'); if (!mapEl) return;
+                this.homeMap = L.map('home-pets-map').setView([30.0444, 31.2357], 5);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.homeMap);
+                this.markerClusterGroup = L.markerClusterGroup({ chunkedLoading: true, spiderfyOnMaxZoom: true, showCoverageOnHover: false, maxClusterRadius: 50 });
+
+                let filteredAnimals = this.currentFilter === 'All' ? this.animals : (this.currentFilter === 'Favorites' ? this.animals.filter(a => this.userProfile?.favorites?.includes(a.id)) : this.animals.filter(a => a.type.toLowerCase() === this.currentFilter.toLowerCase()));
+                if (this.currentGenderFilter !== 'All') {
+                    filteredAnimals = filteredAnimals.filter(a => a.gender === this.currentGenderFilter);
+                }
+
+                const bounds = [];
+                filteredAnimals.forEach(animal => {
+                    if (animal.lat && animal.lng) {
+                        const img = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/100x100/eeeeee/999999';
+                        const isFav = this.userProfile?.favorites?.includes(animal.id);
+                        const favColor = isFav ? 'text-red-500' : 'text-gray-400';
+                        const icon = L.divIcon({ className: 'custom-pet-marker', html: `<div class="w-14 h-14 rounded-full overflow-hidden border-4 border-brand-500 shadow-xl bg-white flex items-center justify-center transform transition hover:scale-110"><img src="${img}" class="w-full h-full object-cover"></div>`, iconSize: [56, 56], iconAnchor: [28, 28], popupAnchor: [0, -28] });
+                        const marker = L.marker([animal.lat, animal.lng], { icon });
+                        bounds.push([animal.lat, animal.lng]);
+                        marker.bindPopup(`<div class="cursor-pointer p-0 text-center min-w-[160px] bg-white flex flex-col relative" onclick="app.navigate('detail', '${animal.id}')"><button onclick="event.stopPropagation(); app.toggleFavorite('${animal.id}')" class="absolute top-2 right-2 bg-white/90 backdrop-blur w-7 h-7 flex items-center justify-center rounded-full shadow-md hover:scale-110 transition-transform z-[1000]"><i class="fa-solid fa-heart ${favColor} text-sm"></i></button><div class="w-full h-28 bg-gray-100 rounded-t-xl overflow-hidden mb-3"><img src="${img}" class="w-full h-full object-cover"></div><div class="px-3 pb-3"><h3 class="font-heading font-bold text-gray-900 text-lg mb-1 leading-tight">${animal.name}</h3><p class="text-xs font-semibold text-brand-600 mb-2">${animal.breed}</p><button class="text-xs bg-brand-500 hover:bg-brand-600 transition-colors text-white px-4 py-1.5 rounded-full w-full font-bold shadow-sm">${this.t('aboutAnimal')} ${animal.name}</button></div></div>`);
+                        this.markerClusterGroup.addLayer(marker);
+                    }
+                });
+                this.homeMap.addLayer(this.markerClusterGroup);
+                if (bounds.length > 0) this.homeMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 14 });
+            },
+
+            renderHome: function() {
+                const container = document.getElementById('app-content');
+                let html = `
+                    <div class="bg-brand-900 text-white py-20 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-10"><svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M50 0L100 50L50 100L0 50Z" fill="none" stroke="currentColor" stroke-width="2"/></pattern></defs><rect width="100%" height="100%" fill="url(#p)"/></svg></div>
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                            <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6">${this.t('heroTitle')}</h1>
+                            <p class="text-xl md:text-2xl text-brand-100 max-w-3xl mx-auto mb-10">${this.t('heroDesc')}</p>
+                            <div class="mt-8 flex justify-center gap-4 flex-wrap">
+                                <button onclick="app.surpriseMe()" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-full font-bold shadow-lg transition-colors text-lg flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles"></i> ${this.t('surpriseMe')}</button>
+                                ${this.role === 'guest' ? `<button onclick="app.showAuthModal()" class="bg-white text-brand-900 hover:bg-gray-100 px-8 py-3 rounded-full font-bold shadow-lg transition-colors text-lg flex items-center gap-2"><i class="fa-solid fa-user-plus"></i> ${this.t('signInRegister')}</button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                const filters = ['All', 'Cat', 'Dog', 'Bird', 'Small Pet', 'Other']; if (this.user && this.role !== 'guest') filters.push('Favorites');
+                let filterHTML = `<div class="flex justify-center flex-wrap gap-2 mb-6">`;
+                filters.forEach(f => {
+                    const isActive = this.currentFilter === f;
+                    const btnClass = isActive ? 'bg-brand-500 text-white shadow-md' : 'bg-white text-gray-500 hover:text-brand-600 hover:bg-brand-50 border border-gray-200';
+                    filterHTML += `<button onclick="app.setFilter('${f}')" class="px-5 py-2 rounded-full font-bold transition-all duration-300 ${btnClass}">${this.t(f === 'All' ? 'allPets' : (f === 'Favorites' ? 'myFavorites' : f.toLowerCase()))}</button>`;
+                }); filterHTML += `</div>`;
+
+                let locationHTML = `
+                    <div class="flex justify-center items-center gap-4 mb-8 bg-white p-4 rounded-2xl shadow-sm border border-gray-100 max-w-2xl mx-auto flex-wrap">
+                        <button onclick="app.requestLocation()" class="${this.userLat ? 'bg-brand-500 text-white' : 'bg-brand-50 text-brand-600'} hover:opacity-90 px-4 py-2 rounded-xl font-bold transition-colors flex items-center gap-2"><i class="fa-solid fa-location-crosshairs"></i> ${this.t('nearMe')}</button>
+                        <div class="flex items-center gap-3 flex-grow min-w-[200px]">
+                            <label class="text-sm font-bold text-gray-600 whitespace-nowrap">${this.t('searchRadius')}: <span id="radius-val" class="text-brand-600">${this.searchRadius}</span>km</label>
+                            <input type="range" min="5" max="500" value="${this.searchRadius}" oninput="document.getElementById('radius-val').textContent=this.value" onchange="app.updateSearchRadius(this.value)" class="w-full accent-brand-500 cursor-pointer">
+                        </div>
+                        ${this.userLat ? `<button onclick="app.clearLocation()" class="text-red-500 hover:text-red-700 p-2"><i class="fa-solid fa-times"></i></button>` : ''}
+                    </div>
+                `;
+
+                let gridMapToggle = `
+                    <div class="flex justify-center mb-10 gap-3 flex-wrap">
+                        <div class="flex gap-3">
+                            <button onclick="app.setHomeView('grid')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'grid' ? 'bg-gray-800 text-white scale-105' : 'bg-white text-gray-500 hover:text-gray-800 hover:bg-gray-50 border border-gray-200'}"><i class="fa-solid fa-table-cells-large mr-2"></i> ${this.t('gridView')}</button>
+                            <button onclick="app.setHomeView('map')" class="px-6 py-2.5 rounded-full font-bold shadow-sm transition-all duration-300 ${this.homeView === 'map' ? 'bg-gray-800 text-white scale-105' : 'bg-white text-gray-500 hover:text-gray-800 hover:bg-gray-50 border border-gray-200'}"><i class="fa-solid fa-map-location-dot mr-2"></i> ${this.t('mapView')}</button>
+                        </div>
+                        <select onchange="app.setGenderFilter(this.value)" class="px-6 py-2.5 rounded-full font-bold shadow-sm border border-gray-200 bg-white text-gray-600 outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer">
+                            <option value="All" ${this.currentGenderFilter === 'All' ? 'selected' : ''}>${this.t('allGenders')}</option>
+                            <option value="Male" ${this.currentGenderFilter === 'Male' ? 'selected' : ''}>${this.t('male')}</option>
+                            <option value="Female" ${this.currentGenderFilter === 'Female' ? 'selected' : ''}>${this.t('female')}</option>
+                        </select>
+                        <select onchange="app.setSort(this.value)" class="px-6 py-2.5 rounded-full font-bold shadow-sm border border-gray-200 bg-white text-gray-600 outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer">
+                            <option value="newest" ${this.currentSort === 'newest' ? 'selected' : ''}>${this.t('newest')}</option><option value="oldest" ${this.currentSort === 'oldest' ? 'selected' : ''}>${this.t('oldest')}</option>
+                            <option value="youngest" ${this.currentSort === 'youngest' ? 'selected' : ''}>${this.t('youngest')}</option><option value="oldestAge" ${this.currentSort === 'oldestAge' ? 'selected' : ''}>${this.t('oldestAge')}</option>
+                        </select>
+                    </div>
+                `;
+
+                html += `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">` + filterHTML + locationHTML + gridMapToggle;
+                
+                let filteredAnimals = this.currentFilter === 'All' ? [...this.animals] : (this.currentFilter === 'Favorites' ? this.animals.filter(a => this.userProfile?.favorites?.includes(a.id)) : this.animals.filter(a => a.type.toLowerCase() === this.currentFilter.toLowerCase()));
+
+                if (this.currentGenderFilter !== 'All') {
+                    filteredAnimals = filteredAnimals.filter(a => a.gender === this.currentGenderFilter);
+                }
+
+                if (this.userLat && this.userLng) {
+                    filteredAnimals = filteredAnimals.filter(a => {
+                        if (!a.lat || !a.lng) return false;
+                        const dist = this.calculateDistance(this.userLat, this.userLng, a.lat, a.lng);
+                        return dist <= this.searchRadius;
+                    });
+                }
+
+                filteredAnimals.sort((a, b) => {
+                    if (this.currentSort === 'newest') return new Date(b.createdAt) - new Date(a.createdAt);
+                    if (this.currentSort === 'oldest') return new Date(a.createdAt) - new Date(b.createdAt);
+                    let numA = parseFloat(a.age) || 0; let numB = parseFloat(b.age) || 0;
+                    if (a.age.toLowerCase().includes('year') || a.age.includes('سن')) numA *= 12;
+                    if (b.age.toLowerCase().includes('year') || b.age.includes('سن')) numB *= 12;
+                    if (this.currentSort === 'youngest') return numA - numB;
+                    if (this.currentSort === 'oldestAge') return numB - numA;
+                    return 0;
+                });
+
+                if (filteredAnimals.length === 0) {
+                    html += `<div class="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100"><i class="fa-solid fa-cat text-6xl text-gray-300 mb-6"></i><h2 class="text-3xl font-heading font-bold text-gray-700 mb-4">${this.t('noAnimalsTitle')}</h2><p class="text-gray-500 max-w-lg mx-auto">${this.t('noAnimalsDesc') || ''}</p></div>`;
+                } else if (this.homeView === 'grid') {
+                    html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">`;
+                    filteredAnimals.forEach(animal => {
+                        const img = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/600x400/eeeeee/999999?text=No+Image';
+                        const isFav = this.userProfile?.favorites?.includes(animal.id);
+                        const genderIcon = animal.gender === 'Female' ? '<i class="fa-solid fa-venus text-pink-500"></i>' : (animal.gender === 'Male' ? '<i class="fa-solid fa-mars text-blue-500"></i>' : '');
+                        
+                        html += `
+                            <div class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer flex flex-col h-full border border-gray-100" onclick="app.navigate('detail', '${animal.id}')">
+                                <div class="relative h-64 overflow-hidden bg-gray-100">
+                                    <img src="${img}" alt="${animal.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <div class="absolute top-4 ${this.lang === 'ar' ? 'right-4' : 'left-4'} bg-white/90 backdrop-blur text-gray-800 px-3 py-1 rounded-full text-sm font-bold shadow-sm">${this.t(animal.type.toLowerCase())}</div>
+                                    <button onclick="event.stopPropagation(); app.toggleFavorite('${animal.id}')" class="absolute top-4 ${this.lang === 'ar' ? 'left-4' : 'right-4'} bg-white/90 backdrop-blur w-9 h-9 flex items-center justify-center rounded-full shadow-sm hover:scale-110 transition-transform z-10">
+                                        <i class="fa-solid fa-heart ${isFav ? 'text-red-500' : 'text-gray-400'} text-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="p-6 flex-grow flex flex-col">
+                                    <div class="flex justify-between items-end mb-2"><h3 class="text-2xl font-heading font-bold text-gray-900">${animal.name} <span class="text-lg ml-1">${genderIcon}</span></h3><span class="text-brand-600 font-semibold">${animal.age}</span></div>
+                                    <p class="text-sm text-gray-500 font-medium mb-4"><i class="fa-solid fa-tag mr-2 text-gray-400"></i>${animal.breed}</p>
+                                    <p class="text-gray-600 line-clamp-3 mb-4 flex-grow">${animal.description || this.t('noDesc')}</p>
+                                    ${animal.petAddress ? `<div class="text-xs text-gray-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1 text-gray-400"></i> ${animal.petAddress}</div>` : ''}
+                                    <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                                        <span class="text-sm text-gray-500"><i class="fa-regular fa-clock mr-1"></i> ${moment(animal.createdAt).fromNow()}</span>
+                                        <button class="text-brand-600 font-bold flex items-center gap-2">${this.t('meet')} <i class="${this.lang === 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right'}"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    html += `</div>`;
+                } else if (this.homeView === 'map') {
+                    html += `<div id="home-pets-map" class="w-full h-[80vh] min-h-[600px] rounded-3xl shadow-lg border border-gray-200 overflow-hidden relative"></div>`;
+                }
+                
+                html += `</div>`;
+                container.innerHTML = html;
+            },
+
+            renderDetail: function(animalIdOrObj) {
+                const animal = typeof animalIdOrObj === 'string' ? this.animals.find(a => a.id === animalIdOrObj) : animalIdOrObj;
+                if (!animal) return this.navigate('home');
+                
+                let hasViewed = localStorage.getItem('viewed_' + animal.id);
+                if (this.user && (animal.viewedBy?.includes(this.user.uid) || this.userProfile?.viewedAnimals?.includes(animal.id))) hasViewed = true;
+
+                if (!hasViewed) {
+                    localStorage.setItem('viewed_' + animal.id, 'true');
+                    let updates = { viewCount: increment(1) };
+                    if (this.user) {
+                        updates.viewedBy = arrayUnion(this.user.uid);
+                        if (this.userProfile) updateDoc(this.getDoc('users', this.user.uid), { viewedAnimals: arrayUnion(animal.id) }).catch(()=>{});
+                    }
+                    updateDoc(this.getDoc('animals', animal.id), updates).catch(()=>{});
+                }
+
+                this.activeAnimal = animal;
+                const container = document.getElementById('app-content');
+                const mainImage = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/800x600/eeeeee/999999?text=No+Image';
+                
+                let thumbnailsHTML = '';
+                if (animal.images && animal.images.length > 1) {
+                    thumbnailsHTML = `<div class="flex gap-4 mt-4 overflow-x-auto pb-2 hide-scrollbar">`;
+                    animal.images.forEach((img) => { thumbnailsHTML += `<img src="${img}" onclick="document.getElementById('main-detail-img').src='${img}'" class="w-24 h-24 object-cover rounded-xl cursor-pointer border-2 hover:border-brand-500 transition-colors flex-shrink-0 shadow-sm">`; });
+                    thumbnailsHTML += `</div>`;
+                }
+
+                let detailBadges = animal.hasFee && animal.feeAmount ? `<div class="bg-amber-50 text-amber-800 px-4 py-2 rounded-lg text-sm font-semibold border border-amber-200 flex items-center"><i class="fa-solid fa-sack-dollar mr-2"></i>${this.t('adoptionFee')}: $${animal.feeAmount}</div>` : `<div class="bg-green-50 text-green-800 px-4 py-2 rounded-lg text-sm font-semibold border border-green-200 flex items-center"><i class="fa-solid fa-heart mr-2"></i>${this.t('feeWaived')}</div>`;
+                const genderIcon = animal.gender === 'Female' ? '<i class="fa-solid fa-venus text-pink-500 ml-2"></i>' : (animal.gender === 'Male' ? '<i class="fa-solid fa-mars text-blue-500 ml-2"></i>' : '');
+
+                let isCaregiver = this.user && this.user.uid === animal.caregiverId;
+                let actionButtonHTML = '';
+                
+                if (isCaregiver) {
+                    actionButtonHTML = `<button onclick="app.openEditAnimal('${animal.id}')" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 flex justify-center items-center gap-3"><i class="fa-solid fa-pen-to-square"></i> ${this.t('editListing')}</button>`;
+                } else if (this.role === 'admin') {
+                    actionButtonHTML = `<div class="bg-gray-100 p-4 rounded-xl text-center text-gray-600 text-sm font-semibold shadow-inner"><i class="fa-solid fa-info-circle mr-2"></i>${this.t('adminNotice')}</div>`;
+                } else {
+                    actionButtonHTML = `<button onclick="app.openAdoptModal('${animal.id}')" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 flex justify-center items-center gap-3"><i class="fa-solid fa-heart"></i> ${this.t('applyToAdopt')} ${animal.name}</button>`;
+                }
+
+                let diaryHtml = `
+                    <div class="mt-8 border-t border-gray-200 pt-8">
+                        <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 flex items-center"><i class="fa-solid fa-clock-rotate-left text-brand-500 mr-2"></i> ${this.t('petDiary')}</h3>
+                        <div class="max-h-[380px] overflow-y-auto pr-2 space-y-6 relative hide-scrollbar">
+                `;
+
+                let timelineEntries = [];
+
+                if (animal.diary && animal.diary.length > 0) {
+                    animal.diary.forEach((entry, idx) => {
+                        timelineEntries.push({
+                            date: entry.date,
+                            text: entry.text,
+                            image: entry.image,
+                            isCustom: true,
+                            diaryIndex: idx
+                        });
+                    });
+                }
+
+                timelineEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                timelineEntries.forEach(entry => {
+                    const textClass = 'text-gray-700 font-semibold';
+                    const dotStyleClass = 'bg-brand-500 ring-4 ring-brand-100';
+
+                    let editControlsHtml = '';
+                    if (isCaregiver && entry.isCustom) {
+                        editControlsHtml = `
+                            <div class="flex gap-3 mt-3 justify-end border-t pt-2 border-gray-50">
+                                <button onclick="app.openEditDiaryModal('${animal.id}', ${entry.diaryIndex})" class="text-xs text-blue-600 hover:text-blue-800 font-bold flex items-center gap-1"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button onclick="app.deleteDiaryEntry('${animal.id}', ${entry.diaryIndex})" class="text-xs text-red-500 hover:text-red-700 font-bold flex items-center gap-1"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            </div>
+                        `;
+                    }
+
+                    diaryHtml += `
+                        <div class="relative pl-6 sm:pl-8 timeline-item ${this.lang === 'ar' ? 'pl-0 pr-6 sm:pr-8' : ''}">
+                            <div class="timeline-line"></div>
+                            <div class="absolute top-2 left-0 w-3.5 h-3.5 ${dotStyleClass} rounded-full border-2 border-white shadow ${this.lang === 'ar' ? 'left-auto right-0' : ''}"></div>
+                            <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                                <p class="text-xs font-bold text-gray-400 mb-2">${moment(entry.date).format('MMMM D, YYYY')}</p>
+                                <p class="${textClass} whitespace-pre-line text-sm leading-relaxed">${entry.text}</p>
+                                ${entry.image ? `<img src="${entry.image}" class="mt-4 rounded-xl max-h-64 object-cover border">` : ''}
+                                ${editControlsHtml}
+                            </div>
+                        </div>`;
+                });
+
+                diaryHtml += `</div></div>`;
+
+                if (isCaregiver) {
+                    diaryHtml += `
+                        <div class="mt-6 bg-brand-50 p-6 rounded-2xl border border-brand-100 shadow-inner">
+                            <h4 class="font-bold text-brand-900 mb-3"><i class="fa-solid fa-plus mr-2"></i>${this.t('addUpdate')}</h4>
+                            <textarea id="diary-new-text" rows="2" class="w-full px-4 py-2 border rounded-lg outline-none resize-none mb-3" placeholder="What's new with ${animal.name}?"></textarea>
+                            <div class="flex items-center gap-3">
+                                <input type="file" id="diary-new-img" accept="image/*" class="text-sm text-gray-500 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-white file:text-brand-700 hover:file:bg-gray-50">
+                                <button onclick="app.addDiaryEntry('${animal.id}')" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-1.5 rounded-lg font-bold shadow-sm transition-colors ml-auto ${this.lang==='ar'?'ml-0 mr-auto':''}"><i class="fa-solid fa-paper-plane mr-1"></i> ${this.t('send')}</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                let html = `
+                    <div class="bg-gray-50 flex-grow py-12">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="flex justify-between items-center mb-8">
+                                <button onclick="app.navigate('home')" class="text-gray-500 hover:text-brand-600 font-semibold flex items-center gap-2 transition-colors"><i class="${this.lang === 'ar' ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left'}"></i> ${this.t('backToAll')}</button>
+                                <div class="flex gap-3">
+                                    <button onclick="app.openShareModal('${animal.id}')" class="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-brand-600 px-4 py-2 rounded-lg font-bold shadow-sm transition-colors flex items-center gap-2"><i class="fa-solid fa-share-nodes"></i> ${this.t('share')}</button>
+                                    ${!isCaregiver ? `<button onclick="app.openReportModal('${animal.id}')" class="bg-white border border-red-100 text-red-500 hover:bg-red-50 px-4 py-2 rounded-lg font-bold shadow-sm transition-colors flex items-center gap-2"><i class="fa-solid fa-flag"></i> <span class="hidden sm:inline">${this.t('reportListing')}</span></button>` : ''}
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                                <div class="grid grid-cols-1 lg:grid-cols-5">
+                                    <div class="p-8 lg:p-12 bg-gray-50 lg:col-span-3 lg:border-r ${this.lang === 'ar' ? 'border-l' : ''}">
+                                        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-md bg-white">
+                                            <img id="main-detail-img" src="${mainImage}" class="w-full h-full object-contain" alt="${animal.name}">
+                                        </div>
+                                        ${thumbnailsHTML}
+                                        <div class="mt-8 bg-white border rounded-2xl p-6 shadow-sm">
+                                            <h3 class="text-lg font-heading font-bold mb-3 border-b pb-2">${this.t('aboutCaregiver')}</h3>
+                                            <div class="flex flex-col gap-2 text-sm text-gray-700">
+                                                <p><i class="fa-solid fa-user-nurse w-5 text-gray-400 mr-1"></i> <button onclick="app.navigate('profile', '${animal.caregiverId}')" class="text-brand-600 hover:underline font-bold">${animal.caregiverName || 'Caregiver'}</button></p>
+                                                <p><i class="fa-solid fa-phone w-5 text-gray-400 mr-1"></i> <a href="tel:${animal.caregiverPhone}" class="text-brand-600 hover:underline">${animal.caregiverPhone || 'N/A'}</a></p>
+                                                ${animal.petAddress ? `<div class="flex items-start gap-2"><i class="fa-solid fa-location-dot w-5 text-gray-400 mt-1 text-center"></i><p class="flex-grow text-gray-700">${animal.petAddress}</p><button onclick="app.copyText('${animal.petAddress.replace(/'/g, "\\'")}')" class="text-gray-400 hover:text-brand-500 transition-colors" title="Copy Address"><i class="fa-regular fa-copy text-lg"></i></button></div>` : ''}
+                                            </div>
+                                        </div>
+                                        ${animal.lat && animal.lng ? `<div class="mt-8 bg-white border rounded-2xl overflow-hidden shadow-sm"><h3 class="text-lg font-heading font-bold p-6 pb-4 border-b"><i class="fa-solid fa-map-location-dot mr-2 text-brand-500"></i> ${this.t('petAddress')}</h3><div id="detail-pet-map" class="w-full h-64 relative z-0"></div></div>` : ''}
+                                    </div>
+                                    
+                                    <div class="p-8 lg:p-12 flex flex-col lg:col-span-2">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h1 class="text-4xl lg:text-5xl font-heading font-extrabold text-gray-900 mb-2 flex items-center gap-4">
+                                                    ${animal.name} ${genderIcon}
+                                                    <button onclick="app.toggleFavorite('${animal.id}')" class="text-3xl hover:scale-110 transition-transform"><i class="fa-solid fa-heart ${this.userProfile?.favorites?.includes(animal.id) ? 'text-red-500' : 'text-gray-300'}"></i></button>
+                                                </h1>
+                                                <p class="text-xl text-brand-600 font-semibold">${animal.breed} &bull; ${this.t(animal.type.toLowerCase())}</p>
+                                            </div>
+                                            <div class="text-right"><span class="inline-block bg-gray-100 text-gray-800 px-4 py-2 rounded-full font-bold text-lg border">${animal.age}</span></div>
+                                        </div>
+                                        <div class="flex flex-wrap gap-3 mb-8">${detailBadges}</div>
+                                        <div class="prose prose-brand text-gray-600 mb-8 max-w-none"><h3 class="text-xl font-heading font-bold text-gray-900 mb-3">${this.t('aboutAnimal')} ${animal.name}</h3><p class="whitespace-pre-line leading-relaxed">${animal.description || this.t('noDesc')}</p></div>
+                                        ${animal.medicalNotes ? `<div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 mb-8"><h3 class="text-lg font-heading font-bold text-blue-900 mb-2"><i class="fa-solid fa-file-medical text-blue-500 mr-2"></i>${this.t('medicalHistory')}</h3><p class="text-blue-800 text-sm whitespace-pre-line">${animal.medicalNotes}</p></div>` : ''}
+                                        
+                                        <div class="mt-auto pt-8">${actionButtonHTML}</div>
+
+                                        ${diaryHtml}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+
+                if (animal.lat && animal.lng) {
+                    setTimeout(() => {
+                        const m = L.map('detail-pet-map').setView([animal.lat, animal.lng], 14);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(m);
+                        const icon = L.divIcon({ className: 'custom-pet-marker', html: `<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-500 shadow-lg bg-white flex items-center justify-center"><img src="${mainImage}" class="w-full h-full object-cover"></div>`, iconSize: [48, 48], iconAnchor: [24, 24] });
+                        L.marker([animal.lat, animal.lng], { icon }).addTo(m);
+                    }, 300);
+                }
+            },
+
+            addDiaryEntry: async function(animalId) {
+                const text = document.getElementById('diary-new-text').value.trim();
+                const fileInput = document.getElementById('diary-new-img');
+                if (!text && fileInput.files.length === 0) return;
+
+                const btn = event.currentTarget;
+                btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+
+                try {
+                    let image = null;
+                    if (fileInput.files.length > 0) image = await this.compressImage(fileInput.files[0]);
+                    
+                    const entry = { text, image, date: new Date().toISOString() };
+                    await updateDoc(this.getDoc('animals', animalId), { diary: arrayUnion(entry) });
+                    this.showNotification('success', 'success', 'success');
+                    this.refreshCurrentView();
+                } catch(e) {
+                    this.showNotification('error', 'error', 'error');
+                    btn.disabled = false; btn.innerHTML = 'Send';
+                }
+            },
+
+            openEditDiaryModal: function(animalId, diaryIndex) {
+                const animal = this.animals.find(a => a.id === animalId);
+                if (!animal || !animal.diary || !animal.diary[diaryIndex]) return;
+                document.getElementById('edit-diary-animal-id').value = animalId;
+                document.getElementById('edit-diary-index').value = diaryIndex;
+                document.getElementById('edit-diary-text').value = animal.diary[diaryIndex].text;
+                document.getElementById('modal-edit-diary').classList.remove('hidden');
+            },
+
+            submitEditDiary: async function(e) {
+                e.preventDefault();
+                const animalId = document.getElementById('edit-diary-animal-id').value;
+                const diaryIndex = parseInt(document.getElementById('edit-diary-index').value);
+                const newText = document.getElementById('edit-diary-text').value.trim();
+                
+                const animal = this.animals.find(a => a.id === animalId);
+                if (!animal || !animal.diary) return;
+                
+                const updatedDiary = [...animal.diary];
+                updatedDiary[diaryIndex].text = newText;
+                
+                try {
+                    await updateDoc(this.getDoc('animals', animalId), { diary: updatedDiary });
+                    this.closeModal('modal-edit-diary');
+                    this.showNotification("success", "saveChanges", "success");
+                    this.refreshCurrentView();
+                } catch(e) {
+                    this.showNotification("error", "error", "error");
+                }
+            },
+
+            deleteDiaryEntry: function(animalId, diaryIndex) {
+                this.confirmAction(this.t('deleteConfirm'), async () => {
+                    const animal = this.animals.find(a => a.id === animalId);
+                    if (!animal || !animal.diary) return;
+                    const updatedDiary = [...animal.diary];
+                    updatedDiary.splice(diaryIndex, 1);
+                    try {
+                        await updateDoc(this.getDoc('animals', animalId), { diary: updatedDiary });
+                        this.showNotification("success", "animalRemoved", "success");
+                        this.refreshCurrentView();
+                    } catch(e) {
+                        this.showNotification("error", "error", "error");
+                    }
+                });
+            },
+
+            renderProfile: async function(uid) {
+                this.activeProfileId = uid;
+                const container = document.getElementById('app-content');
+                container.innerHTML = `<div class="flex justify-center py-20"><i class="fa-solid fa-circle-notch fa-spin text-4xl text-brand-500"></i></div>`;
+                
+                try {
+                    const docSnap = await getDoc(this.getDoc('users', uid));
+                    if (!docSnap.exists()) return container.innerHTML = `<div class="text-center py-20 text-gray-500"><h2 class="text-2xl font-bold">Profile not found.</h2></div>`;
+                    
+                    const profileData = docSnap.data();
+                    const isOwnProfile = this.user && this.user.uid === uid;
+                    const profilePic = profileData.profilePic || 'https://placehold.co/150x150/eeeeee/999999?text=User';
+                    const roleLabel = profileData.role === 'caregiver' ? this.t('caregiverTitle') : (profileData.role === 'admin' ? 'Admin' : this.t('adopterTitle'));
+                    
+                    let html = `
+                        <div class="bg-gray-50 flex-grow py-12">
+                            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                                <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden mb-12">
+                                    <div class="h-32 bg-brand-500"></div>
+                                    <div class="px-8 pb-8 relative">
+                                        <div class="flex justify-between items-end -mt-16 mb-2">
+                                            <img src="${profilePic}" class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover bg-white relative z-10">
+                                            <div class="flex gap-2">
+                                                ${isOwnProfile ? `<button onclick="app.openEditProfile()" class="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg font-bold shadow-sm transition-colors"><i class="fa-solid fa-pen mr-2"></i> ${this.t('editProfile')}</button>` : ''}
+                                                ${!isOwnProfile && this.user ? `<button onclick="app.openMessageModal('${uid}', '${profileData.name.replace(/'/g, "\\'")}')" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg font-bold shadow-sm transition-colors"><i class="fa-solid fa-envelope mr-2"></i> ${this.t('sendMessage')}</button>` : ''}
+                                            </div>
+                                        </div>
+                                        <h1 class="text-3xl font-heading font-bold text-gray-900 mt-4">${profileData.name}</h1>
+                                        <p class="text-brand-600 font-semibold mb-4">${roleLabel}</p>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                            <div class="space-y-3 text-gray-700">
+                                                <p><i class="fa-solid fa-envelope w-6 text-gray-400"></i> <a href="mailto:${profileData.email}" class="text-brand-600 hover:underline">${profileData.email}</a></p>
+                                                ${profileData.phone ? `<p><i class="fa-solid fa-phone w-6 text-gray-400"></i> <a href="tel:${profileData.phone}" class="text-brand-600 hover:underline">${profileData.phone}</a></p>` : ''}
+                                            </div>
+                                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-100"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">${this.t('bio')}</h3><p class="text-gray-800 whitespace-pre-line">${profileData.bio || this.t('noDesc')}</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    `;
+
+                    if (profileData.role === 'caregiver') {
+                        const caregiverAnimals = this.animals.filter(a => a.caregiverId === uid);
+                        html += `<h2 class="text-2xl font-heading font-bold text-gray-900 mb-6">${this.t('caregiverPets')}</h2>`;
+                        if (caregiverAnimals.length === 0) html += `<p class="text-gray-500">${this.t('noAnimalsTitle')}</p>`;
+                        else {
+                            html += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">`;
+                            caregiverAnimals.forEach(animal => {
+                                const img = animal.images && animal.images.length > 0 ? animal.images[0] : 'https://placehold.co/600x400/eeeeee/999999';
+                                html += `<div class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer flex items-center p-4 gap-4 hover:shadow-md transition-all" onclick="app.navigate('detail', '${animal.id}')"><img src="${img}" class="w-20 h-20 rounded-xl object-cover shadow-sm flex-shrink-0"><div class="flex-grow min-w-0"><h4 class="font-bold text-lg text-gray-900 truncate">${animal.name}</h4><p class="text-sm text-brand-600 truncate">${animal.breed}</p></div></div>`;
+                            });
+                            html += `</div>`;
+                        }
+                    }
+
+                    if (isOwnProfile && profileData.role === 'adopter') {
+                        html += `<div class="mt-12"><h2 class="text-2xl font-heading font-bold text-gray-900 mb-6 border-b pb-2"><i class="fa-solid fa-clipboard-list text-brand-500 mr-2"></i>${this.t('myApplications')}</h2>`;
+                        if(this.requests.length === 0) {
+                            html += `<p class="text-gray-500 p-6 bg-white rounded-2xl border text-center font-medium shadow-sm">You haven't submitted any applications yet.</p>`;
+                        } else {
+                            html += `<div class="space-y-6">`;
+                            const statusMap = { 'pending': {label: 'statusPending', color: 'gray'}, 'review': {label: 'statusReview', color: 'blue'}, 'approved': {label: 'statusApproved', color: 'green'}, 'adopted': {label: 'statusAdopted', color: 'brand'}, 'rejected': {label: 'statusRejected', color: 'red'} };
+                            
+                            this.requests.forEach(req => {
+                                const st = statusMap[req.status || 'pending'];
+                                const stages = ['pending', 'review', 'approved', 'adopted'];
+                                const currIdx = stages.indexOf(req.status || 'pending');
+                                const isRejected = req.status === 'rejected';
+
+                                let timelineHtml = `<div class="flex items-center justify-between mt-6 max-w-lg relative before:absolute before:top-4 before:left-8 before:right-8 before:h-1 before:bg-gray-200 before:z-0">`;
+                                if(!isRejected) {
+                                    stages.forEach((stage, idx) => {
+                                        const done = idx <= currIdx;
+                                        const smap = statusMap[stage];
+                                        const color = done ? smap.color : 'gray';
+                                        timelineHtml += `
+                                            <div class="relative z-10 flex flex-col items-center">
+                                                <div class="w-8 h-8 rounded-full bg-${done?color+'-500':'white border-2 border-gray-300'} flex items-center justify-center text-white mb-2 shadow-sm ${done?'':'text-transparent'}"><i class="fa-solid fa-check text-xs"></i></div>
+                                                <span class="text-[10px] font-bold text-${done?'gray-800':'gray-400'} uppercase">${this.t(smap.label)}</span>
+                                            </div>
+                                        `;
+                                    });
+                                } else {
+                                    timelineHtml = `<div class="mt-4 p-3 bg-red-50 text-red-700 font-bold rounded-lg border border-red-200 text-center uppercase tracking-wide"><i class="fa-solid fa-times-circle mr-2"></i> ${this.t('statusRejected')}</div>`;
+                                }
+                                timelineHtml += `</div>`;
+
+                                html += `
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 cursor-pointer hover:shadow-md transition-shadow" onclick="app.navigate('detail', '${req.animalId}')">
+                                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                                            <div><h4 class="font-bold text-xl text-gray-900">${req.animalName}</h4><p class="text-sm text-gray-500">${moment(req.createdAt).format('MMM D, YYYY')}</p></div>
+                                            <span class="px-3 py-1 bg-${st.color}-100 text-${st.color}-700 font-bold rounded-full text-sm uppercase tracking-wide border border-${st.color}-200">${this.t(st.label)}</span>
+                                        </div>
+                                        ${timelineHtml}
+                                    </div>
+                                `;
+                            });
+                            html += `</div>`;
+                        }
+                        html += `</div>`;
+                    }
+                    
+                    html += `</div></div>`;
+                    container.innerHTML = html;
+                } catch (e) {
+                    container.innerHTML = `<div class="text-center py-20 text-red-500">Error loading profile.</div>`;
+                }
+            },
+
+            openEditProfile: function() {
+                if (!this.userProfile) return;
+                document.getElementById('edit-profile-phone').value = this.userProfile.phone || '';
+                document.getElementById('edit-profile-bio').value = this.userProfile.bio || '';
+                document.getElementById('edit-profile-pic').value = ''; 
+                document.getElementById('modal-edit-profile').classList.remove('hidden');
+            },
+
+            handleEditProfile: async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btn-submit-edit-profile'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> ' + this.t('saving');
+                try {
+                    const phone = document.getElementById('edit-profile-phone').value;
+                    const bio = document.getElementById('edit-profile-bio').value;
+                    let profilePic = this.userProfile.profilePic || null;
+                    const fileInput = document.getElementById('edit-profile-pic');
+                    if (fileInput.files.length > 0) profilePic = await this.compressImage(fileInput.files[0]);
+                    const updates = { phone, bio, profilePic };
+                    await updateDoc(this.getDoc('users', this.user.uid), updates);
+                    this.userProfile = { ...this.userProfile, ...updates };
+                    this.closeModal('modal-edit-profile'); this.showNotification("success", "saveChanges", "success"); this.refreshCurrentView();
+                } catch (error) { this.showNotification("error", "error", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('saveChanges'); }
+            },
+
+            renderDashboard: function() {
+                if (this.role === 'admin') return this.renderAdminDashboard();
+                if (this.role === 'caregiver' && !this.userProfile.approved) {
+                    return document.getElementById('app-content').innerHTML = `<div class="bg-gray-50 flex-grow py-12 flex items-center justify-center"><div class="bg-white rounded-3xl p-12 text-center shadow-md border border-gray-100 max-w-lg mx-4"><div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fa-solid fa-clock-rotate-left text-4xl text-amber-600"></i></div><h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">${this.t('pendingTitle')}</h2><p class="text-gray-600 text-lg leading-relaxed">${this.t('pendingDesc')}</p></div></div>`;
+                }
+
+                const myAnimals = this.animals.filter(a => a.caregiverId === this.user.uid);
+                const reqCount = this.requests.length;
+
+                let html = `
+                    <div class="bg-gray-50 flex-grow py-12">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="mb-8"><h1 class="text-4xl font-heading font-bold text-gray-900">${this.t('dashTitle')}</h1><p class="text-gray-500 mt-2">${this.t('dashDesc')} (${this.userProfile.name})</p></div>
+                            <div class="border-b border-gray-200 mb-8 overflow-x-auto hide-scrollbar">
+                                <nav class="-mb-px flex space-x-8">
+                                    <button onclick="app.switchDashTab('manage')" id="tab-manage" class="border-brand-500 text-brand-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg ml-0 ${this.lang==='ar'?'ml-8':''}">${this.t('tabManage')}</button>
+                                    <button onclick="app.switchDashTab('add')" id="tab-add" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg">${this.t('tabAdd')}</button>
+                                    <button onclick="app.switchDashTab('requests')" id="tab-requests" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg flex items-center">${this.t('tabRequests')} ${reqCount > 0 ? `<span class="ml-2 bg-brand-500 text-white text-xs py-0.5 px-2 rounded-full">${reqCount}</span>` : ''}</button>
+                                </nav>
+                            </div>
+                            <div id="dash-content-manage" class="block">${this.renderManageAnimalsList(myAnimals)}</div>
+                            <div id="dash-content-add" class="hidden">${this.renderAddAnimalForm()}</div>
+                            <div id="dash-content-requests" class="hidden">${this.renderRequestsList()}</div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('app-content').innerHTML = html;
+            },
+
+            renderAdminDashboard: function() {
+                const pendingUsers = this.adminUsersList.filter(u => u.role === 'caregiver' && !u.approved);
+                const allUsers = this.adminUsersList.filter(u => u.role !== 'admin');
+                
+                let html = `
+                    <div class="bg-gray-50 flex-grow py-12">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="mb-8"><h1 class="text-4xl font-heading font-bold text-gray-900">${this.t('adminApproveTitle')}</h1><p class="text-gray-500 mt-2">${this.t('adminApproveDesc')}</p></div>
+                            <div class="border-b border-gray-200 mb-8 overflow-x-auto hide-scrollbar">
+                                <nav class="-mb-px flex space-x-8">
+                                    <button onclick="app.adminActiveTab='pending'; app.renderAdminDashboard();" class="${this.adminActiveTab === 'pending' ? 'border-brand-500 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg ml-0 ${this.lang==='ar'?'ml-8':''}">Pending Accounts</button>
+                                    <button onclick="app.adminActiveTab='users'; app.renderAdminDashboard();" class="${this.adminActiveTab === 'users' ? 'border-brand-500 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg">Manage Users</button>
+                                    <button onclick="app.adminActiveTab='reports'; app.renderAdminDashboard();" class="${this.adminActiveTab === 'reports' ? 'border-brand-500 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg">${this.t('reportsTab')} ${this.reports.length > 0 ? `<span class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full ml-1">${this.reports.length}</span>`:''}</button>
+                                </nav>
+                            </div>
+                `;
+
+                if (this.adminActiveTab === 'pending') {
+                    html += `<div class="bg-white shadow sm:rounded-md border border-gray-100 mb-6">`;
+                    if (pendingUsers.length === 0) html += `<div class="p-12 text-center text-gray-500">${this.t('noPending')}</div>`;
+                    else {
+                        html += `<ul class="divide-y divide-gray-200">`;
+                        pendingUsers.forEach(u => {
+                            html += `<li><div class="px-6 py-5 flex items-center justify-between hover:bg-gray-50"><div><p class="text-xl font-bold text-gray-900 mb-1">${u.name}</p><p class="text-sm text-gray-500">${u.email} | ${u.phone}</p></div><button onclick="app.approveCaregiver('${u.id}')" class="bg-brand-500 text-white px-5 py-2 rounded-lg font-bold">${this.t('approveCaregiver')}</button></div></li>`;
+                        }); html += `</ul>`;
+                    }
+                    html += `</div>`;
+                }
+
+                if (this.adminActiveTab === 'users') {
+                    html += `<div class="bg-white shadow sm:rounded-md border border-gray-100 mb-6">`;
+                    if (allUsers.length === 0) html += `<div class="p-12 text-center text-gray-500">No users found.</div>`;
+                    else {
+                        html += `<ul class="divide-y divide-gray-200">`;
+                        allUsers.forEach(u => {
+                            const isSuspended = u.suspended === true;
+                            const actionBtn = isSuspended 
+                                ? `<button onclick="app.toggleUserSuspension('${u.id}', false)" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-bold text-sm shadow-sm">${u.role === 'caregiver' ? this.t('unblock') : this.t('unsuspend')}</button>`
+                                : `<button onclick="app.toggleUserSuspension('${u.id}', true)" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-sm">${u.role === 'caregiver' ? this.t('block') : this.t('suspend')}</button>`;
+                            
+                            html += `<li><div class="px-6 py-5 flex items-center justify-between hover:bg-gray-50"><div><p class="text-lg font-bold text-gray-900 mb-1">${u.name} <span class="text-xs bg-brand-100 text-brand-800 px-2 py-0.5 rounded ml-2">${u.role}</span> ${isSuspended ? '<span class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded ml-1 border border-red-200 shadow-sm"><i class="fa-solid fa-ban mr-1"></i>Suspended</span>' : ''}</p><p class="text-sm text-gray-500">${u.email}</p></div>${actionBtn}</div></li>`;
+                        });
+                        html += `</ul>`;
+                    }
+                    html += `</div>`;
+                }
+
+                if (this.adminActiveTab === 'reports') {
+                    html += `<div class="bg-white shadow sm:rounded-md border border-gray-100 divide-y">`;
+                    if(this.reports.length === 0) html += `<div class="p-12 text-center text-gray-500">${this.t('noReports')}</div>`;
+                    else {
+                        this.reports.forEach(rep => {
+                            html += `<div class="p-6 flex justify-between items-center"><div class="flex-grow"><div class="flex items-center gap-3 mb-2"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold uppercase">Report</span><span class="text-sm text-gray-500">${moment(rep.createdAt).fromNow()}</span></div><p class="text-gray-900 font-semibold">"${rep.reason}"</p><button onclick="app.navigate('detail','${rep.animalId}')" class="text-brand-600 text-sm mt-2 hover:underline">View Reported Listing</button></div><div class="flex flex-col gap-2"><button onclick="app.deleteAnimal('${rep.animalId}')" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-bold text-sm shadow-sm">${this.t('deleteListing')}</button><button onclick="app.deleteDoc('reports','${rep.id}')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded font-bold text-sm border">${this.t('dismiss')}</button></div></div>`;
+                        });
+                    }
+                    html += `</div>`;
+                }
+
+                html += `</div></div>`;
+                document.getElementById('app-content').innerHTML = html;
+            },
+
+            approveCaregiver: async function(uid) {
+                try { await updateDoc(this.getDoc('users', uid), { approved: true }); this.showNotification("success", "approvedSuccess", "success"); } catch (e) { this.showNotification("error", "Error", "error"); }
+            },
+
+            toggleUserSuspension: async function(uid, suspend) {
+                try {
+                    await updateDoc(this.getDoc('users', uid), { suspended: suspend });
+                    this.showNotification("success", "Success", "success");
+                } catch (e) {
+                    this.showNotification("error", "Error", "error");
+                }
+            },
+
+            switchDashTab: function(tabName) {
+                ['manage', 'add', 'requests'].forEach(t => {
+                    let btn = document.getElementById(`tab-${t}`); if (!btn) return;
+                    btn.className = t === tabName ? 'border-brand-500 text-brand-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg';
+                    document.getElementById(`dash-content-${t}`).className = t === tabName ? 'block' : 'hidden';
+                });
+                if (tabName === 'add') {
+                    this.draftImages = []; this.renderDraftImages();
+                    setTimeout(() => this.initAddAnimalMap(), 200);
+                }
+            },
+
+            initAddAnimalMap: function() {
+                const mapEl = document.getElementById('add-pet-map'); if (!mapEl) return;
+                if (this.addPetMap) this.addPetMap.remove();
+                this.addPetMap = L.map('add-pet-map').setView([30.0444, 31.2357], 6);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.addPetMap);
+                this.addPetMarker = L.marker([30.0444, 31.2357], { draggable: true }).addTo(this.addPetMap);
+                document.getElementById('add-lat').value = ''; document.getElementById('add-lng').value = '';
+                if (navigator.geolocation) navigator.geolocation.getCurrentPosition(pos => { this.addPetMap.setView([pos.coords.latitude, pos.coords.longitude], 12); this.addPetMarker.setLatLng([pos.coords.latitude, pos.coords.longitude]); }, () => {}, { timeout: 5000 });
+                
+                this.addPetMap.on('click', (e) => { 
+                    this.addPetMarker.setLatLng(e.latlng); 
+                    document.getElementById('add-lat').value = e.latlng.lat; 
+                    document.getElementById('add-lng').value = e.latlng.lng; 
+                    this.geocodeLatLng(e.latlng.lat, e.latlng.lng, 'add-pet-address');
+                });
+                
+                this.addPetMarker.on('dragend', (e) => { 
+                    const pos = e.target.getLatLng(); 
+                    document.getElementById('add-lat').value = pos.lat; 
+                    document.getElementById('add-lng').value = pos.lng; 
+                    this.geocodeLatLng(pos.lat, pos.lng, 'add-pet-address');
+                });
+                
+                this.addPetMap.invalidateSize();
+            },
+
+            renderManageAnimalsList: function(myAnimals) {
+                if (myAnimals.length === 0) return `<div class="bg-white rounded-2xl p-12 text-center shadow-sm border border-gray-100"><p class="text-gray-500 mb-4">${this.t('noAnimalsAdded')}</p><button onclick="app.switchDashTab('add')" class="text-brand-600 font-bold hover:underline">${this.t('addFirstAnimal')}</button></div>`;
+                let html = `<div class="bg-white shadow overflow-hidden sm:rounded-md border border-gray-100"><ul class="divide-y divide-gray-200">`;
+                myAnimals.forEach(animal => {
+                    const img = animal.images && animal.images[0] ? animal.images[0] : 'https://placehold.co/100x100/eeeeee/999999';
+                    const reqCount = this.requests.filter(r => r.animalId === animal.id).length;
+                    html += `
+                        <li>
+                            <div class="px-6 py-5 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <div class="flex items-center flex-grow cursor-pointer" onclick="app.navigate('detail', '${animal.id}')"><img class="h-20 w-20 rounded-xl object-cover mr-4 shadow-sm border" src="${img}"><div><p class="text-xl font-bold text-gray-900 mb-1">${animal.name}</p><p class="text-sm text-gray-500">${this.t(animal.type.toLowerCase())} &bull; ${animal.breed}</p></div></div>
+                                <div class="flex flex-wrap items-center gap-4 bg-gray-50 p-3 rounded-xl border w-full sm:w-auto shrink-0 shadow-inner">
+                                    <div class="text-center px-4 border-r ${this.lang==='ar'?'border-l border-r-0':''}"><div class="text-xl font-bold">${animal.viewCount || 0}</div><div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-eye text-brand-500 mr-1"></i>${this.t('views')}</div></div>
+                                    <div class="text-center px-4 border-r ${this.lang==='ar'?'border-l border-r-0':''}"><div class="text-xl font-bold">${animal.favoriteCount || 0}</div><div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-heart text-red-500 mr-1"></i>${this.t('favorites')}</div></div>
+                                    <div class="text-center px-4"><div class="text-xl font-bold text-brand-600">${reqCount}</div><div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-file-lines text-amber-500 mr-1"></i>${this.t('applications')}</div></div>
+                                </div>
+                                <div class="flex items-center gap-2 mt-2 sm:mt-0">
+                                    <button onclick="app.openEditAnimal('${animal.id}')" class="text-blue-500 hover:bg-blue-50 bg-white p-3 rounded-xl border shadow-sm"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="app.deleteAnimal('${animal.id}')" class="text-red-500 hover:bg-red-50 bg-white p-3 rounded-xl border shadow-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                    `;
+                });
+                return html + `</ul></div>`;
+            },
+
+            handleDraftImageUpload: async function(e) {
+                const files = Array.from(e.target.files);
+                for (let f of files) {
+                    const base64 = await this.compressImage(f);
+                    this.draftImages.push(base64);
+                }
+                this.renderDraftImages();
+                e.target.value = '';
+            },
+
+            removeDraftImage: function(index) {
+                this.draftImages.splice(index, 1);
+                this.renderDraftImages();
+            },
+
+            renderDraftImages: function() {
+                const containerAdd = document.getElementById('draft-images-container');
+                const containerEdit = document.getElementById('edit-draft-images-container');
+                
+                let html = '';
+                this.draftImages.forEach((img, idx) => {
+                    html += `<div class="relative inline-block mr-2"><img src="${img}" class="w-20 h-20 object-cover rounded-xl border border-gray-200"><button type="button" onclick="app.removeDraftImage(${idx})" class="absolute -top-2 -right-2 bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow-md"><i class="fa-solid fa-times"></i></button></div>`;
+                });
+                
+                if (containerAdd) containerAdd.innerHTML = html;
+                if (containerEdit) containerEdit.innerHTML = html;
+            },
+
+            renderAddAnimalForm: function() {
+                return `
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-10 max-w-5xl mx-auto">
+                        <form id="form-add-animal" onsubmit="app.submitNewAnimal(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div class="space-y-6">
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-1">${this.t('animalName')}</label><input type="text" id="add-name" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div><label class="block text-sm font-bold text-gray-700 mb-1">${this.t('type')}</label><select id="add-type" required class="w-full px-4 py-2 border rounded-lg outline-none"><option value="Dog">${this.t('dog')}</option><option value="Cat">${this.t('cat')}</option><option value="Bird">${this.t('bird')}</option><option value="Small Pet">${this.t('small pet')}</option><option value="Other">${this.t('other')}</option></select></div>
+                                        <div><label class="block text-sm font-bold text-gray-700 mb-1">${this.t('gender')}</label><select id="add-gender" required class="w-full px-4 py-2 border rounded-lg outline-none"><option value="Male">${this.t('male')}</option><option value="Female">${this.t('female')}</option></select></div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="col-span-2"><label class="block text-sm font-bold text-gray-700 mb-1">${this.t('age')}</label><input type="text" id="add-age" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                                    </div>
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-1">${this.t('breed')}</label><input type="text" id="add-breed" required class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-1">${this.t('petAddress')}</label>
+                                        <div class="relative">
+                                            <input type="text" id="add-pet-address" required class="w-full px-4 py-2 border rounded-lg outline-none" oninput="app.searchAddressSuggestions(this.value)" onblur="setTimeout(() => { document.getElementById('address-suggestions')?.classList.add('hidden'); }, 200)" placeholder="Type address or drop a pin" autocomplete="off">
+                                            <div id="address-suggestions" class="hidden absolute z-50 w-full bg-white border border-gray-200 shadow-lg rounded-lg mt-1 max-h-60 overflow-y-auto"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200"><label class="block text-sm font-bold text-gray-700 mb-2 flex items-center"><i class="fa-solid fa-map-pin mr-2 text-brand-500"></i>${this.t('pinLocation')}</label><div id="add-pet-map" class="w-full h-[200px] rounded-lg border relative z-0"></div><input type="hidden" id="add-lat"><input type="hidden" id="add-lng"></div>
+                                </div>
+                                <div class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-1">${this.t('uploadPics')}</label>
+                                        <input type="file" id="add-images" multiple accept="image/*" onchange="app.handleDraftImageUpload(event)" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-brand-50 file:text-brand-700 mb-3">
+                                        <div id="draft-images-container" class="flex gap-3 overflow-x-auto pb-2"></div>
+                                    </div>
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-1">${this.t('desc')}</label><textarea id="add-desc" required rows="5" class="w-full px-4 py-2 border rounded-lg resize-none outline-none"></textarea></div>
+                                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                                        <div class="flex items-center mb-4"><input type="checkbox" id="add-has-fee" onchange="document.getElementById('fee-container').classList.toggle('hidden', !this.checked)" class="w-4 h-4 rounded text-brand-600"><label for="add-has-fee" class="ml-2 text-sm font-bold">${this.t('requiresFee')}</label></div>
+                                        <div id="fee-container" class="hidden pl-6"><label class="block text-sm font-semibold text-gray-700 mb-1">${this.t('feeAmount')}</label><input type="number" id="add-fee-amount" min="0" class="w-full px-4 py-2 border rounded-lg outline-none"></div>
+                                    </div>
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-1"><i class="fa-solid fa-file-medical text-blue-500 mr-1"></i> ${this.t('medicalHistory')}</label><textarea id="add-medical" rows="3" class="w-full px-4 py-2 border rounded-lg resize-none outline-none"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="border-t pt-6 flex justify-end"><button type="submit" id="btn-save-animal" class="bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 px-8 rounded-lg shadow transition-colors flex items-center"><i class="fa-solid fa-plus mr-2"></i> ${this.t('publish')}</button></div>
+                        </form>
+                    </div>
+                `;
+            },
+
+            renderRequestsList: function() {
+                if (this.requests.length === 0) return `<div class="bg-white rounded-2xl p-12 text-center shadow-sm border border-gray-100"><i class="fa-solid fa-inbox text-5xl text-gray-300 mb-4"></i><h3 class="text-xl font-bold text-gray-600 mb-2">${this.t('noRequests')}</h3></div>`;
+                let html = `<div class="grid grid-cols-1 gap-6">`;
+                this.requests.forEach(req => {
+                    const statusMap = { 'pending': 'statusPending', 'review': 'statusReview', 'approved': 'statusApproved', 'adopted': 'statusAdopted', 'rejected': 'statusRejected' };
+                    html += `
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="bg-gray-50 px-6 py-4 border-b flex justify-between items-center flex-wrap gap-4">
+                                <h4 class="font-bold text-lg text-gray-900 flex items-center"><i class="fa-solid fa-user-circle text-brand-500 mr-2 text-xl"></i> ${req.userName} <span class="text-xs ml-2 bg-gray-100 px-2 py-1 rounded-full border">${this.t('for')}: ${req.animalName}</span></h4>
+                                <div class="flex items-center gap-3">
+                                    <select onchange="app.updateRequestStatus('${req.id}', this.value, '${req.userId}', '${req.animalName}')" class="text-sm font-bold border border-gray-300 rounded px-2 py-1 outline-none bg-white">
+                                        <option value="pending" ${req.status==='pending'?'selected':''}>${this.t('statusPending')}</option>
+                                        <option value="review" ${req.status==='review'?'selected':''}>${this.t('statusReview')}</option>
+                                        <option value="approved" ${req.status==='approved'?'selected':''}>${this.t('statusApproved')}</option>
+                                        <option value="adopted" ${req.status==='adopted'?'selected':''}>${this.t('statusAdopted')}</option>
+                                        <option value="rejected" ${req.status==='rejected'?'selected':''}>${this.t('statusRejected')}</option>
+                                    </select>
+                                    <span class="text-sm text-gray-500">${moment(req.createdAt).format('MMM D, YYYY - h:mm A')}</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">${this.t('contactInfo')}</p><p class="text-gray-800"><i class="fa-solid fa-envelope text-gray-400 mr-2"></i><a href="mailto:${req.contactEmail}" class="text-brand-600 hover:underline">${req.contactEmail}</a></p><p class="text-gray-800 mt-1"><i class="fa-solid fa-phone text-gray-400 mr-2"></i>${req.contactPhone}</p></div>
+                                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">${this.t('aboutAdopter')}</p><div class="bg-gray-50 p-3 rounded-lg border"><p class="text-gray-700 text-sm whitespace-pre-line">${req.about}</p>${req.hadPetBefore === 'yes' ? `<div class="mt-3 p-3 bg-white rounded border text-sm"><p><strong>${this.t('hadPetBefore').replace(' *','')}</strong> ${this.t('yes')}</p><p><strong>${this.t('stillWithYou').replace(' *','')}</strong> ${req.stillWithYou==='yes'?this.t('yes'):this.t('no')}</p>${req.stillWithYou==='no'?`<p><strong>${this.t('whereAreTheyNow').replace(' *','')}</strong> ${req.petWhereabouts}</p>`:''}</div>` : `<div class="mt-3 p-3 bg-white rounded border text-sm"><p><strong>${this.t('hadPetBefore').replace(' *','')}</strong> ${this.t('no')}</p></div>`}</div></div>
+                                </div>
+                                <div class="flex justify-end gap-3 border-t pt-4">
+                                    <button onclick="app.deleteDoc('requests', '${req.id}')" class="px-4 py-2 text-red-600 font-semibold hover:bg-red-50 rounded-lg">${this.t('archive')}</button>
+                                    <a href="mailto:${req.contactEmail}?subject=Adoption Request for ${req.animalName}" class="px-4 py-2 bg-brand-500 text-white font-semibold rounded-lg shadow"><i class="fa-solid fa-reply mr-2"></i> ${this.t('replyEmail')}</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                return html + `</div>`;
+            },
+
+            updateRequestStatus: async function(reqId, status, adopterId, animalName) {
+                try {
+                    await updateDoc(this.getDoc('requests', reqId), { status });
+                    this.showNotification("success", "Status Updated", "success");
+                    this.sendNotification(adopterId, "Application Update", `Your application for ${animalName} is now: ${this.t('status'+status.charAt(0).toUpperCase() + status.slice(1))}`, 'status', reqId);
+                } catch(e) { this.showNotification("error", "Error", "error"); }
+            },
+
+            closeModal: function(id) { document.getElementById(id).classList.add('hidden'); },
+
+            togglePetQuestions: function() {
+                const hadPet = document.getElementById('adopt-had-pet').value;
+                document.getElementById('container-still-with-you').classList.toggle('hidden', hadPet !== 'yes');
+                if(hadPet !== 'yes') { document.getElementById('adopt-still-with-you').value = ''; this.togglePetWhereabouts(); }
+            },
+            togglePetWhereabouts: function() {
+                const still = document.getElementById('adopt-still-with-you').value;
+                document.getElementById('container-pet-whereabouts').classList.toggle('hidden', still !== 'no');
+            },
+
+            openAdoptModal: function(animalId) {
+                const animal = this.animals.find(a => a.id === animalId); if (!animal) return;
+                document.getElementById('adopt-animal-id').value = animal.id; document.getElementById('adopt-animal-name').value = animal.name; document.getElementById('adopt-caregiver-id').value = animal.caregiverId; 
+                document.getElementById('adopt-animal-title').textContent = animal.name;
+                document.getElementById('adopt-animal-img').src = animal.images?.[0] || 'https://placehold.co/100x100';
+                document.getElementById('form-adopt').reset();
+                document.getElementById('guest-adopt-warning').classList.toggle('hidden', this.role !== 'guest');
+                if (this.role !== 'guest') { document.getElementById('adopt-name').value = this.userProfile?.name || ''; document.getElementById('adopt-email').value = this.user?.email || ''; }
+                this.togglePetQuestions(); document.getElementById('modal-adopt').classList.remove('hidden');
+            },
+
+            submitAdoption: async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btn-submit-adopt'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> ' + this.t('submitting');
+                try {
+                    const hadPetVal = document.getElementById('adopt-had-pet').value;
+                    const cId = document.getElementById('adopt-caregiver-id').value;
+                    const aName = document.getElementById('adopt-animal-name').value;
+                    await addDoc(this.getRef('requests'), {
+                        animalId: document.getElementById('adopt-animal-id').value, animalName: aName, caregiverId: cId, shelterAdminId: cId, userId: this.user ? this.user.uid : 'guest', userName: document.getElementById('adopt-name').value, contactEmail: document.getElementById('adopt-email').value, contactPhone: document.getElementById('adopt-phone').value, about: document.getElementById('adopt-about').value, hadPetBefore: hadPetVal, stillWithYou: hadPetVal === 'yes' ? document.getElementById('adopt-still-with-you').value : null, petWhereabouts: (hadPetVal === 'yes' && document.getElementById('adopt-still-with-you').value === 'no') ? document.getElementById('adopt-pet-whereabouts').value : null, status: 'pending', createdAt: new Date().toISOString()
+                    });
+                    this.closeModal('modal-adopt'); this.showNotification("success", "reqSent", "success");
+                    this.sendNotification(cId, "New Application", `You received a new adoption request for ${aName}!`, "request");
+                } catch (error) { this.showNotification("error", "Error submitting", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('submitApp'); }
+            },
+
+            compressImage: function(file) {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            const canvas = document.createElement('canvas'); const MAX = 800; let w = img.width; let h = img.height;
+                            if (w > h && w > MAX) { h *= MAX / w; w = MAX; } else if (h > MAX) { w *= MAX / h; h = MAX; }
+                            canvas.width = w; canvas.height = h;
+                            canvas.getContext('2d').drawImage(img, 0, 0, w, h); resolve(canvas.toDataURL('image/jpeg', 0.6));
+                        }; img.src = e.target.result;
+                    }; reader.readAsDataURL(file);
+                });
+            },
+
+            submitNewAnimal: async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btn-save-animal'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spin fa-circle-notch"></i> ' + this.t('saving');
+                const lat = document.getElementById('add-lat').value; const lng = document.getElementById('add-lng').value;
+                if (!lat || !lng) { this.showNotification("error", "pinRequired", "error"); btn.disabled = false; btn.innerHTML = this.t('publish'); return; }
+
+                try {
+                    const hasFee = document.getElementById('add-has-fee').checked;
+                    await addDoc(this.getRef('animals'), {
+                        name: document.getElementById('add-name').value, type: document.getElementById('add-type').value, gender: document.getElementById('add-gender').value, age: document.getElementById('add-age').value, breed: document.getElementById('add-breed').value, petAddress: document.getElementById('add-pet-address').value, lat: parseFloat(lat), lng: parseFloat(lng), description: document.getElementById('add-desc').value, medicalNotes: document.getElementById('add-medical').value, hasFee: hasFee, feeAmount: hasFee ? parseFloat(document.getElementById('add-fee-amount').value) || 0 : 0, images: this.draftImages, caregiverId: this.user.uid, caregiverName: this.userProfile.name, caregiverPhone: this.userProfile.phone || '', createdAt: new Date().toISOString(), viewCount: 0, favoriteCount: 0
+                    });
+                    document.getElementById('form-add-animal').reset(); this.draftImages = []; this.switchDashTab('manage'); this.showNotification("success", "animalAddedSuccess", "success");
+                } catch (error) { this.showNotification("error", "uploadFailed", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('publish'); }
+            },
+
+            openEditAnimal: function(id) {
+                const animal = this.animals.find(a => a.id === id); if(!animal) return;
+                this.editingAnimalId = id;
+                document.getElementById('edit-pet-name').value = animal.name;
+                document.getElementById('edit-pet-age').value = animal.age;
+                if(document.getElementById('edit-pet-gender')) document.getElementById('edit-pet-gender').value = animal.gender || 'Male';
+                document.getElementById('edit-pet-desc').value = animal.description;
+                document.getElementById('edit-pet-medical').value = animal.medicalNotes || '';
+                this.draftImages = animal.images ? [...animal.images] : [];
+                this.renderDraftImages();
+                document.getElementById('modal-edit-animal').classList.remove('hidden');
+            },
+
+            submitEditAnimal: async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btn-submit-edit-animal'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spin fa-circle-notch"></i>';
+                try {
+                    await updateDoc(this.getDoc('animals', this.editingAnimalId), {
+                        name: document.getElementById('edit-pet-name').value, age: document.getElementById('edit-pet-age').value, gender: document.getElementById('edit-pet-gender').value, description: document.getElementById('edit-pet-desc').value, medicalNotes: document.getElementById('edit-pet-medical').value, images: this.draftImages
+                    });
+                    this.closeModal('modal-edit-animal'); this.showNotification("success", "saveChanges", "success"); this.refreshCurrentView();
+                } catch(err) { this.showNotification("error", "error", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('saveChanges'); }
+            },
+
+            deleteAnimal: async function(animalId) {
+                this.confirmAction(this.t('deleteConfirm'), async () => {
+                    try { 
+                        await deleteDoc(this.getDoc('animals', animalId)); 
+                        this.showNotification("success", "animalRemoved", "success"); 
+                        this.refreshCurrentView();
+                    } catch (e) { 
+                        this.showNotification("error", "Error", "error"); 
+                    }
+                });
+            },
+            
+            deleteDoc: async function(collection, docId) {
+                this.confirmAction("Are you sure?", async () => {
+                    try { 
+                        await deleteDoc(this.getDoc(collection, docId)); 
+                        this.showNotification("success", "success", "success"); 
+                        this.refreshCurrentView();
+                    } catch(e){} 
+                });
+            },
+
+            openMessageModal: function(uid, name) { document.getElementById('msg-receiver-id').value = uid; document.getElementById('msg-receiver-name-input').value = name; document.getElementById('msg-receiver-name-display').textContent = name; document.getElementById('msg-text').value = ''; document.getElementById('modal-message').classList.remove('hidden'); },
+            submitMessage: async function(e) {
+                e.preventDefault(); const btn = document.getElementById('btn-submit-message'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+                try {
+                    const rId = document.getElementById('msg-receiver-id').value;
+                    await addDoc(this.getRef('messages'), { participants: [this.user.uid, rId], senderId: this.user.uid, receiverId: rId, senderName: this.userProfile?.name || 'User', receiverName: document.getElementById('msg-receiver-name-input').value, text: document.getElementById('msg-text').value, type: 'message', createdAt: new Date().toISOString(), read: false });
+                    this.closeModal('modal-message'); this.showNotification("success", "Message sent!", "success"); this.openChat(rId, document.getElementById('msg-receiver-name-input').value);
+                    this.sendNotification(rId, "New Message", `You received a new message from ${this.userProfile?.name}`, "message");
+                } catch (err) { this.showNotification("error", "Error", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('send'); }
+            },
+            openChat: function(uid, name) { 
+                this.activeChatUser = { uid, name }; 
+                this.navigate('inbox'); 
+                this.setupChatPresenceListener(uid);
+            },
+            closeChat: function() { 
+                this.activeChatUser = null; 
+                this.chatAttachment = null;
+                if(this.typingTimeout) clearTimeout(this.typingTimeout);
+                if(this.user && !this.user.isAnonymous) updateDoc(this.getDoc('users', this.user.uid), { typingTo: null }).catch(()=>{});
+                this.renderInbox(); 
+            },
+
+            setupChatPresenceListener: function(uid) {
+                onSnapshot(this.getDoc('users', uid), (doc) => {
+                    if (doc.exists() && this.activeChatUser && this.activeChatUser.uid === uid) {
+                        const data = doc.data();
+                        const statusEl = document.getElementById('chat-user-status');
+                        const bubbleIndicator = document.getElementById('typing-bubble-indicator');
+
+                        if (statusEl) {
+                            if (data.typingTo === this.user.uid) {
+                                statusEl.innerHTML = `<span class="text-brand-500 font-bold italic text-sm animate-pulse">${this.t('typing')}</span>`;
+                            } else {
+                                statusEl.innerHTML = `<span class="text-xs font-semibold ${data.online ? 'text-green-500' : 'text-gray-400'}"><i class="fa-solid fa-circle text-[8px] mr-1"></i>${data.online ? this.t('online') : this.t('offline')}</span>`;
+                            }
+                        }
+
+                        if (bubbleIndicator) {
+                            if (data.typingTo === this.user.uid) {
+                                bubbleIndicator.classList.remove('hidden');
+                                const sc = document.querySelector('#chat-scroll-area');
+                                if(sc) sc.scrollTop = sc.scrollHeight;
+                            } else {
+                                bubbleIndicator.classList.add('hidden');
+                            }
+                        }
+                    }
+                });
+            },
+
+            handleChatTyping: function() {
+                if(!this.user || !this.activeChatUser) return;
+                updateDoc(this.getDoc('users', this.user.uid), { typingTo: this.activeChatUser.uid }).catch(()=>{});
+                if(this.typingTimeout) clearTimeout(this.typingTimeout);
+                this.typingTimeout = setTimeout(() => {
+                    updateDoc(this.getDoc('users', this.user.uid), { typingTo: null }).catch(()=>{});
+                }, 2000);
+            },
+
+            handleChatAttachment: async function(e) {
+                if(e.target.files.length === 0) return;
+                const file = e.target.files[0];
+                this.chatAttachment = await this.compressImage(file);
+                document.getElementById('chat-attachment-preview').classList.remove('hidden');
+                document.getElementById('chat-attachment-img').src = this.chatAttachment;
+                e.target.value = '';
+            },
+
+            removeChatAttachment: function() {
+                this.chatAttachment = null;
+                document.getElementById('chat-attachment-preview').classList.add('hidden');
+            },
+
+            startVoiceRecord: async function() {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    this.mediaRecorder = new MediaRecorder(stream);
+                    this.audioChunks = [];
+                    this.mediaRecorder.ondataavailable = e => this.audioChunks.push(e.data);
+                    this.mediaRecorder.start();
+
+                    document.getElementById('chat-input-normal').classList.add('hidden');
+                    document.getElementById('chat-input-recording').classList.remove('hidden');
+                    
+                    this.recordingSeconds = 0;
+                    document.getElementById('recording-timer').innerText = '00:00';
+                    
+                    this.recordingInterval = setInterval(() => {
+                        this.recordingSeconds++;
+                        const m = String(Math.floor(this.recordingSeconds / 60)).padStart(2, '0');
+                        const s = String(this.recordingSeconds % 60).padStart(2, '0');
+                        document.getElementById('recording-timer').innerText = `${m}:${s}`;
+                    }, 1000);
+
+                } catch(e) { 
+                    console.error("Mic error:", e); 
+                    this.showNotification("error", "Microphone access is required.", "error"); 
+                }
+            },
+
+            cancelVoiceRecord: function() {
+                if(this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+                    this.mediaRecorder.stop();
+                    this.mediaRecorder.stream.getTracks().forEach(t => t.stop());
+                }
+                clearInterval(this.recordingInterval);
+                document.getElementById('chat-input-recording').classList.add('hidden');
+                document.getElementById('chat-input-normal').classList.remove('hidden');
+            },
+
+            sendVoiceRecord: function() {
+                if(this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+                    this.mediaRecorder.onstop = async () => {
+                        const blob = new Blob(this.audioChunks, { type: 'audio/webm' });
+                        const reader = new FileReader();
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = async () => {
+                            const base64Audio = reader.result;
+                            if(this.activeChatUser) {
+                                await addDoc(this.getRef('messages'), { 
+                                    participants: [this.user.uid, this.activeChatUser.uid], 
+                                    senderId: this.user.uid, 
+                                    receiverId: this.activeChatUser.uid, 
+                                    senderName: this.userProfile?.name || 'User', 
+                                    receiverName: this.activeChatUser.name, 
+                                    text: '', 
+                                    attachment: base64Audio, 
+                                    type: 'audio', 
+                                    createdAt: new Date().toISOString(), 
+                                    read: false 
+                                });
+                            }
+                        };
+                    };
+                    this.mediaRecorder.stop();
+                    this.mediaRecorder.stream.getTracks().forEach(t => t.stop());
+                }
+                clearInterval(this.recordingInterval);
+                document.getElementById('chat-input-recording').classList.add('hidden');
+                document.getElementById('chat-input-normal').classList.remove('hidden');
+            },
+
+            sendInlineMessage: async function(e) {
+                e.preventDefault(); if (!this.activeChatUser) return;
+                const input = document.getElementById('inline-msg-text'); const text = input.value.trim(); 
+                if (!text && !this.chatAttachment) return;
+                const btn = e.target.querySelector('button[type="submit"]'); btn.disabled = true;
+                try { 
+                    await addDoc(this.getRef('messages'), { 
+                        participants: [this.user.uid, this.activeChatUser.uid], 
+                        senderId: this.user.uid, 
+                        receiverId: this.activeChatUser.uid, 
+                        senderName: this.userProfile?.name || 'User', 
+                        receiverName: this.activeChatUser.name, 
+                        text: text, 
+                        attachment: this.chatAttachment,
+                        type: this.chatAttachment ? 'image' : 'message', 
+                        createdAt: new Date().toISOString(), 
+                        read: false 
+                    }); 
+                    input.value = ''; 
+                    this.removeChatAttachment();
+                    updateDoc(this.getDoc('users', this.user.uid), { typingTo: null }).catch(()=>{});
+                    this.sendNotification(this.activeChatUser.uid, "New Message", `You received a new message from ${this.userProfile?.name}`, "message"); 
+                } catch (error) {} finally { btn.disabled = false; }
+            },
+
+            renderInbox: function() {
+                const container = document.getElementById('app-content'); let html = `<div class="bg-gray-50 flex-grow py-12"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">`;
+                if (this.activeChatUser) {
+                    const threadMessages = this.messages.filter(m => m.participants.includes(this.activeChatUser.uid));
+                    threadMessages.forEach(m => { if (m.receiverId === this.user.uid && !m.read) updateDoc(this.getDoc('messages', m.id), { read: true }); });
+                    
+                    html += `
+                        <div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-[75vh]">
+                            <div class="bg-white px-6 py-4 border-b border-gray-100 flex items-center gap-4 shadow-sm z-10">
+                                <button onclick="app.closeChat()" class="text-gray-400 hover:text-brand-600 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center"><i class="fa-solid fa-arrow-left ${this.lang === 'ar' ? 'fa-arrow-right' : ''}"></i></button>
+                                <div>
+                                    <h2 class="text-xl font-bold text-gray-900">${this.activeChatUser.name}</h2>
+                                    <div id="chat-user-status" class="h-5"></div>
+                                </div>
+                            </div>
+                            <div id="chat-scroll-area" class="flex-grow overflow-y-auto p-6 space-y-4 bg-gray-50 flex flex-col hide-scrollbar relative">
+                    `;
+                    if (threadMessages.length === 0) html += `<p class="text-center text-gray-400 mt-10 font-medium">${this.t('noMessages')}</p>`;
+                    
+                    threadMessages.forEach(m => { 
+                        const isMe = m.senderId === this.user.uid; 
+                        let contentHtml = `<p class="whitespace-pre-wrap text-sm leading-relaxed">${m.text}</p>`;
+                        
+                        if (m.type === 'image' && m.attachment) {
+                            contentHtml = `<img src="${m.attachment}" class="rounded-xl max-w-full max-h-48 object-contain mb-2 border ${isMe ? 'border-brand-400' : 'border-gray-200'}">` + contentHtml;
+                        } else if (m.type === 'audio' && m.attachment) {
+                            contentHtml = `<audio controls src="${m.attachment}" class="h-10 w-48 mb-1 rounded"></audio>`;
+                        }
+
+                        const readReceipt = isMe ? `<i class="fa-solid ${m.read ? 'fa-check-double text-blue-200' : 'fa-check text-white/50'} text-[11px] ml-1.5 shadow-sm"></i>` : '';
+
+                        html += `<div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
+                            <div class="max-w-[85%] sm:max-w-[70%] rounded-2xl px-5 py-3 shadow-sm ${isMe ? 'bg-brand-500 text-white rounded-tr-sm' : 'bg-white border text-gray-800 rounded-tl-sm'}">
+                                ${contentHtml}
+                                <div class="flex justify-end items-center mt-1 gap-1">
+                                    <p class="text-[10px] text-right ${isMe ? 'text-brand-100' : 'text-gray-400'} font-semibold">${moment(m.createdAt).format('h:mm A')}</p>
+                                    ${readReceipt}
+                                </div>
+                            </div>
+                        </div>`; 
+                    });
+                    
+                    html += `
+                                <div id="typing-bubble-indicator" class="hidden flex justify-start mt-2">
+                                    <div class="bg-white border border-gray-200 text-gray-500 rounded-2xl px-4 py-2 text-xs font-bold animate-pulse shadow-sm flex items-center gap-2">
+                                        <div class="flex space-x-1"><div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div><div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div><div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div></div>
+                                        ${this.activeChatUser.name} ${this.t('typing')}
+                                    </div>
+                                </div>
+                            </div>
+                        <div id="chat-attachment-preview" class="hidden p-3 bg-gray-100 border-t relative">
+                            <img id="chat-attachment-img" src="" class="h-16 rounded-xl border border-gray-300 shadow-sm object-cover">
+                            <button onclick="app.removeChatAttachment()" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs"><i class="fa-solid fa-times"></i></button>
+                        </div>
+                        <div class="p-4 bg-white border-t min-h-[76px] flex items-center">
+                            
+                            <form id="chat-input-normal" onsubmit="app.sendInlineMessage(event)" class="flex items-center gap-3 w-full">
+                                <label class="cursor-pointer text-gray-400 hover:text-brand-500 p-2 transition-colors">
+                                    <i class="fa-solid fa-paperclip text-xl"></i>
+                                    <input type="file" id="chat-attach-input" accept="image/*" onchange="app.handleChatAttachment(event)" class="hidden">
+                                </label>
+                                <input type="text" id="inline-msg-text" oninput="app.handleChatTyping()" placeholder="${this.t('typeMessage')}" class="flex-grow px-5 py-3 border rounded-full outline-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-brand-500 transition-all">
+                                <button type="button" onclick="app.startVoiceRecord()" class="text-gray-500 hover:text-brand-500 p-2 transition-colors active:scale-95"><i class="fa-solid fa-microphone text-xl"></i></button>
+                                <button type="submit" class="bg-brand-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-md hover:scale-105 active:scale-95 transition-transform flex-shrink-0"><i class="fa-solid fa-paper-plane ${this.lang === 'ar' ? '-scale-x-100' : ''}"></i></button>
+                            </form>
+
+                            <div id="chat-input-recording" class="hidden flex items-center justify-between w-full bg-red-50 px-5 py-2.5 rounded-full border border-red-100 shadow-inner">
+                                <div class="flex items-center gap-3 text-red-500 font-bold">
+                                    <i class="fa-solid fa-microphone animate-pulse"></i>
+                                    <span id="recording-timer">00:00</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button type="button" onclick="app.cancelVoiceRecord()" class="text-gray-400 hover:text-red-600 p-2 transition-colors"><i class="fa-solid fa-trash-can text-lg"></i></button>
+                                    <button type="button" onclick="app.sendVoiceRecord()" class="bg-brand-500 hover:bg-brand-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-md hover:scale-105 active:scale-95 transition-transform flex-shrink-0"><i class="fa-solid fa-paper-plane ${this.lang === 'ar' ? '-scale-x-100' : ''}"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>`;
+                } else {
+                    const threads = {}; this.messages.forEach(m => { const otherId = m.senderId === this.user.uid ? m.receiverId : m.senderId; const otherName = m.senderId === this.user.uid ? m.receiverName : m.senderName; if (!threads[otherId] || new Date(m.createdAt) > new Date(threads[otherId].lastMessage.createdAt)) { threads[otherId] = { uid: otherId, name: otherName, lastMessage: m, unreadCount: m.receiverId === this.user.uid && !m.read ? (threads[otherId]?.unreadCount || 0) + 1 : (threads[otherId]?.unreadCount || 0) }; } else if (m.receiverId === this.user.uid && !m.read) threads[otherId].unreadCount = (threads[otherId].unreadCount || 0) + 1; });
+                    html += `<div class="flex items-center justify-between mb-8"><h1 class="text-4xl font-heading font-bold text-gray-900"><i class="fa-solid fa-inbox mr-3 text-brand-500"></i>${this.t('inbox')}</h1></div><div class="bg-white rounded-3xl shadow-sm border overflow-hidden divide-y divide-gray-50">`;
+                    const threadList = Object.values(threads).sort((a,b) => new Date(b.lastMessage.createdAt) - new Date(a.lastMessage.createdAt));
+                    if (threadList.length === 0) html += `<div class="p-16 text-center text-gray-400"><i class="fa-regular fa-comments text-5xl mb-4 text-gray-300"></i><p class="text-lg font-medium">${this.t('noMessages')}</p></div>`;
+                    else {
+                        threadList.forEach(t => {
+                            const isUnread = t.unreadCount > 0;
+                            let previewText = t.lastMessage.type === 'image' ? `<i class="fa-solid fa-image mr-1"></i> ${this.t('uploadPics')}` : (t.lastMessage.type === 'audio' ? `<i class="fa-solid fa-microphone mr-1"></i> ${this.t('audioMessage')}` : t.lastMessage.text);
+                            const readTick = t.lastMessage.senderId === this.user.uid ? `<i class="fa-solid ${t.lastMessage.read ? 'fa-check-double text-blue-500' : 'fa-check text-gray-300'} mr-1 text-[10px]"></i>` : '';
+                            html += `<div onclick="app.openChat('${t.uid}', '${t.name.replace(/'/g, "\\'")}')" class="p-5 flex items-center gap-4 hover:bg-gray-50 cursor-pointer ${isUnread ? 'bg-brand-50/20' : ''}"><div class="w-14 h-14 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-heading font-bold text-xl flex-shrink-0 border relative">${t.name.charAt(0).toUpperCase()}</div><div class="flex-grow min-w-0"><div class="flex justify-between items-baseline mb-1"><h3 class="text-lg font-bold text-gray-900 truncate ${isUnread ? 'font-black' : ''}">${t.name}</h3><span class="text-xs font-semibold ${isUnread ? 'text-brand-600' : 'text-gray-400'} ml-2 ${this.lang === 'ar' ? 'ml-0 mr-2' : ''}">${moment(t.lastMessage.createdAt).fromNow(true)}</span></div><p class="text-sm truncate ${isUnread ? 'font-bold text-brand-800' : 'text-gray-500'}">${readTick}${previewText}</p></div>${isUnread ? `<div class="w-5 h-5 bg-brand-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">${t.unreadCount}</div>` : ''}</div>`;
+                        });
+                    }
+                    html += `</div>`;
+                }
+                container.innerHTML = html + `</div></div>`;
+                if (this.activeChatUser) { const sc = container.querySelector('#chat-scroll-area'); if (sc) sc.scrollTop = sc.scrollHeight; }
+            },
+
+            toggleNotificationsModal: function() {
+                document.getElementById('modal-notifications').classList.remove('hidden');
+                this.notifications.forEach(n => { if(!n.read) updateDoc(this.getDoc('notifications', n.id), {read:true}).catch(()=>{}); });
+            },
+            renderNotificationsList: function() {
+                const list = document.getElementById('notifications-list'); if(!list) return;
+                if(this.notifications.length === 0) list.innerHTML = `<div class="p-8 text-center text-gray-400 font-medium">No new notifications.</div>`;
+                else {
+                    let html = '';
+                    this.notifications.forEach(n => {
+                        let icon = 'fa-bell text-gray-400';
+                        if(n.type==='message') icon = 'fa-envelope text-blue-500';
+                        if(n.type==='request') icon = 'fa-file-lines text-amber-500';
+                        if(n.type==='status') icon = 'fa-clipboard-check text-green-500';
+                        if(n.type==='report') icon = 'fa-flag text-red-500';
+
+                        html += `<div class="p-4 hover:bg-gray-50 flex items-start gap-3 ${!n.read ? 'bg-brand-50/30' : ''}">
+                            <div class="mt-1"><i class="fa-solid ${icon} text-lg"></i></div>
+                            <div><p class="text-sm font-bold text-gray-900">${n.title}</p><p class="text-sm text-gray-600">${n.message}</p><p class="text-[10px] text-gray-400 mt-1">${moment(n.createdAt).fromNow()}</p></div>
+                        </div>`;
+                    });
+                    list.innerHTML = html;
+                }
+            },
+
+            openShareModal: function(petId) {
+                this.activeSharePet = petId;
+                document.getElementById('modal-share').classList.remove('hidden');
+            },
+            shareTo: function(platform) {
+                const link = window.location.origin + window.location.pathname + '#pet=' + this.activeSharePet;
+                const text = encodeURIComponent("Check out this adorable pet looking for a home on Meowgical Paws! \n" + link);
+                if(platform === 'whatsapp') window.open(`https://api.whatsapp.com/send?text=${text}`);
+                if(platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`);
+                if(platform === 'instagram') {
+                    this.copyText(link);
+                    this.showNotification('success', 'Link copied! Open Instagram to paste and share.', 'success');
+                    setTimeout(() => window.open('https://instagram.com', '_blank'), 1500);
+                }
+                if(platform === 'copy') {
+                    this.copyText(link);
+                }
+                this.closeModal('modal-share');
+            },
+
+            openReportModal: function(petId) {
+                this.activeSharePet = petId; 
+                document.getElementById('report-reason').value = '';
+                document.getElementById('modal-report').classList.remove('hidden');
+            },
+            submitReport: async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btn-submit-report'); btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spin fa-circle-notch"></i>';
+                try {
+                    await addDoc(this.getRef('reports'), { animalId: this.activeSharePet, reason: document.getElementById('report-reason').value, reportedBy: this.user ? this.user.uid : 'guest', createdAt: new Date().toISOString() });
+                    this.adminUsersList.forEach(admin => this.sendNotification(admin.id, 'New Report', 'A listing has been reported.', 'report'));
+                    this.closeModal('modal-report'); this.showNotification("success", "success", "success");
+                } catch(err) { this.showNotification("error", "error", "error"); } finally { btn.disabled = false; btn.innerHTML = this.t('submitApp'); }
+            },
+
+            showNotification: function(type, messageKey, titleKey) {
+                const container = document.getElementById('notification-container'); const notif = document.createElement('div');
+                const title = this.t(titleKey) || titleKey; const msg = this.t(messageKey) || messageKey;
+                let icon = type === 'success' ? '<i class="fa-solid fa-check-circle text-green-500 text-xl"></i>' : '<i class="fa-solid fa-circle-exclamation text-red-500 text-xl"></i>';
+                let bgClass = type === 'success' ? 'bg-white border-green-200' : 'bg-white border-red-200';
+                notif.className = `flex items-start p-4 mb-2 rounded-xl shadow-lg border ${bgClass} transform transition-all duration-300 translate-x-full min-w-[300px] pointer-events-auto`;
+                notif.innerHTML = `<div class="mr-3 mt-0.5">${icon}</div><div class="flex-grow"><h4 class="text-sm font-bold text-gray-900">${title}</h4><p class="text-sm text-gray-600 mt-1">${msg}</p></div><button onclick="this.parentElement.remove()" class="ml-4 text-gray-400 hover:text-gray-600 focus:outline-none"><i class="fa-solid fa-times"></i></button>`;
+                container.appendChild(notif);
+                setTimeout(() => notif.classList.remove('translate-x-full'), 10);
+                setTimeout(() => { notif.classList.add('translate-x-full'); setTimeout(() => notif.remove(), 300); }, 5000);
+            }
+        };
+
+        window.onload = () => { app.init(); };
+    </script>
+</body>
+</html>
